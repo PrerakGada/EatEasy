@@ -1,5 +1,8 @@
 import 'package:eat_easy/screens/Customer/customer_home.dart';
+import 'package:eat_easy/screens/Provider/provider_verification.dart';
+import 'package:eat_easy/screens/admin/admin_screen.dart';
 import 'package:eat_easy/screens/onboarding/user_signin.dart';
+import 'package:eat_easy/screens/user_home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +48,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   const Text(
                     'Login',
-                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold,color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                   SizedBox(
                     height: 35,
@@ -86,7 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () async {
                             if (await AuthRepo().login(_emailController.text,
                                 _passwordController.text)) {
-                              Navigator.popAndPushNamed(context, CustomerHome.id);
+                              Navigator.popAndPushNamed(
+                                  context, ProviderVerification.id);
                             } else {
                               print('error');
                             }

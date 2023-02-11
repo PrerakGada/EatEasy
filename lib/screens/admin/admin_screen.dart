@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../Customer/user_profile_screen.dart';
+import 'applications_history.dart';
 
 class AdminDashBoard extends StatefulWidget {
   const AdminDashBoard({super.key});
@@ -28,7 +29,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
           padding: const EdgeInsets.only(top: 70, left: 20, right: 30),
           child: Column(
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
@@ -64,7 +65,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Row(
                         children: [
@@ -88,16 +89,15 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                   ),
                   InkWell(
                     onTap: () {
-                       // AuthController.instance.signOut();
-                       // auth.error = '';
+                      // AuthController.instance.signOut();
+                      // auth.error = '';
 
-                       // FirebaseAuth.instance.signOut().then((value) {
-                         Navigator.push(
-                             context,
-                             MaterialPageRoute(
-                               builder: (context) => LoginScreen(),
-                             )
-                         );
+                      // FirebaseAuth.instance.signOut().then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ));
                     },
                     child: Container(
                       height: 35,
@@ -160,6 +160,97 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                               ),
                               const Text(
                                 "Applications",
+                                style: TextStyle(
+                                    color: AppColors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            child: ProfileScreen(),
+                            type: PageTransitionType.fade,
+                          ),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 235, 235, 235),
+                            borderRadius: BorderRadius.circular(20)),
+                        width: 150,
+                        height: 150,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 30),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/order.png",
+                                width: 50,
+                                height: 50,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                "Orders",
+                                style: TextStyle(
+                                    color: AppColors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        UserStore().fetchCompletedProviders();
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            child: const AplicationHistory(),
+                            type: PageTransitionType.fade,
+                          ),
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 235, 235, 235),
+                            borderRadius: BorderRadius.circular(20)),
+                        width: 150,
+                        height: 150,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 30),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/history.png",
+                                width: 50,
+                                height: 50,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                "History",
                                 style: TextStyle(
                                     color: AppColors.black,
                                     fontWeight: FontWeight.bold),

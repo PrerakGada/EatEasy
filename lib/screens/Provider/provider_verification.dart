@@ -8,6 +8,7 @@ import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:provider/provider.dart';
 
 import '../../Theme/app_colors.dart';
@@ -33,6 +34,8 @@ class _ProviderVerificationState extends State<ProviderVerification> {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   File? demo;
+  File? aadhar;
+  File? pan;
 
   void onPickImageButtonClicked() async {
     final tempImage =
@@ -47,6 +50,38 @@ class _ProviderVerificationState extends State<ProviderVerification> {
 
     setState(() {
       demo = File(tempImage.path);
+    });
+  }
+
+  void onPickAadharButtonClicked() async {
+    final tempImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (tempImage == null) {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('An error occurred. Failed to pick image!'),
+      ));
+      return;
+    }
+
+    setState(() {
+      aadhar = File(tempImage.path);
+    });
+  }
+
+  void onPickPanButtonClicked() async {
+    final tempImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (tempImage == null) {
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('An error occurred. Failed to pick image!'),
+      ));
+      return;
+    }
+
+    setState(() {
+      pan = File(tempImage.path);
     });
   }
 
@@ -78,6 +113,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 (demo != null)
                     ? Align(
@@ -151,42 +187,125 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     controller: _gst_noController,
                     title: 'GST No.',
                     hintTitle: 'Enter your GST no.'),
-                SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (await QueryRepo().submitProviderVerification(
-                      _usernameController.text,
-                      _emailController.text,
-                      _mobileController.text,
-                      _descriptionController.text,
-                      _fssai_noController.text,
-                      _gst_noController.text,
-                    )) {
-                      Navigator.pushNamed(context, AdminDashBoard.id);
-                    }
-
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      textStyle: TextStyle(
-                        fontSize: 15,
-
-                      )),
-                  /**/child: const Text("Submit",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black) ),
+                SizedBox(height: 14),
+                Text(
+                  "Supporting Documents:",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                      Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      textStyle: TextStyle(
-                        fontSize: 15,
+                Row(
+                  children: [
+                    (aadhar != null)
+                        ? IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.done),
+                            color: Colors.white,
+                          )
+                        : MaterialButton(
+                            color: Colors.white,
+                            onPressed: () async {
+                              // if (kIsWeb) {
+                              //   startweb();
+                              // } else {
+                              onPickAadharButtonClicked();
+                            },
+                            child: const Text("Aadhar")),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    (pan != null)
+                        ? IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.done),
+                            color: Colors.white,
+                          )
+                        : MaterialButton(
+                            color: Colors.white,
+                            onPressed: () async {
+                              // if (kIsWeb) {
+                              //   startweb();
+                              // } else {
+                              onPickPanButtonClicked();
+                            },
+                            child: const Text("Pancard")),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      firebase_storage.Reference ref = firebase_storage
+                          .FirebaseStorage.instance
+                          .ref('/restroimages/' +
+                              '${DateTime.now().millisecondsSinceEpoch.toString()}');
+                      firebase_storage.UploadTask uploadTask =
+                          ref.putFile(demo!.absolute);
+                      await Future.value(uploadTask);
+                      var newUrl = await ref.getDownloadURL();
+                      firebase_storage.Reference ref1 = firebase_storage
+                          .FirebaseStorage.instance
+                          .ref('/documents/' +
+                              '${DateTime.now().millisecondsSinceEpoch.toString()}');
+                      firebase_storage.UploadTask uploadTaskAadhar =
+                          ref1.putFile(aadhar!.absolute);
+                      await Future.value(uploadTaskAadhar);
+                      var newUrlAadhar = await ref1.getDownloadURL();
+                      firebase_storage.Reference ref2 = firebase_storage
+                          .FirebaseStorage.instance
+                          .ref('/documents/' +
+                              '${DateTime.now().millisecondsSinceEpoch.toString()}');
+                      firebase_storage.UploadTask uploadTaskPan =
+                          ref2.putFile(pan!.absolute);
+                      await Future.value(uploadTaskPan);
+                      var newUrlPan = await ref2.getDownloadURL();
 
-                      )),
-                  child: const Text("Already registered?",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+                      if (await QueryRepo().submitProviderVerification(
+                          _usernameController.text,
+                          _emailController.text,
+                          _mobileController.text,
+                          _descriptionController.text,
+                          _fssai_noController.text,
+                          _gst_noController.text,
+                          newUrl.toString(),
+                          newUrlAadhar.toString(),
+                          newUrlPan.toString())) {
+                        Navigator.pushNamed(context, AdminDashBoard.id);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        textStyle: TextStyle(
+                          fontSize: 15,
+                        )),
+                    /**/ child: const Text("Submit",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black)),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        textStyle: TextStyle(
+                          fontSize: 15,
+                        )),
+                    child: const Text("Already registered?",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black)),
+                  ),
                 ),
               ],
             ),

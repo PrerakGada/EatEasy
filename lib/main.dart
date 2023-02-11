@@ -6,6 +6,7 @@ import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/screens/onboarding/signUp_screen.dart';
+import 'package:eat_easy/screens/user_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,6 @@ import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/onboarding/splash_screen.dart';
 import 'stores/user_store.dart';
 import 'screens/onboarding/user_signin.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         // initialRoute: SplashScreen.id,
+        //initialRoute: SplashScreen.id,
         //initialRoute: AdminDashBoard.id,
         initialRoute: CustomerHome.id,
         // initialRoute: ProviderVerification.id,
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
           CustomerHome.id: (context) => CustomerHome(),
           ProviderVerification.id: (context) => ProviderVerification(),
           AdminDashBoard.id: (context) => AdminDashBoard(),
+          HomeScreen.id: (context) => HomeScreen(),
           ProviderDashBoard.id: (context) => ProviderDashBoard(),
           ProfileScreen.id: (context) => ProfileScreen(),
         },
