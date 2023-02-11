@@ -22,6 +22,7 @@
           }
         },
         {
+
           "client_id": "421097357772-kq74cdh8dsncpjqrgcc3616i93bvsjct.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -44,6 +45,7 @@
               "ios_info": {
                 "bundle_id": "com.prerak.eatEasy.RunnerTests"
               }
+
             }
           ]
         }
