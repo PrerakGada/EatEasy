@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
-import 'package:eat_easy/screens/Customer/SideBar.dart';
-import 'package:eat_easy/screens/Provider/InfoPage.dart';
+import 'package:eat_easy/screens/Customer/side_bar.dart';
+import 'package:eat_easy/screens/Provider/info_page.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:eat_easy/screens/Customer/side_bar.dart';
