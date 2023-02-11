@@ -155,6 +155,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     hintTitle: 'Enter your Email'),
                 SizedBox(height: 24),
                 LabeledTextFormField(
+                    controller: _passwordController,
+                    title: 'Password',
+                    hintTitle: 'Enter your Password'),
+                SizedBox(height: 24),
+                LabeledTextFormField(
                     controller: _mobileController,
                     title: 'Mobile',
                     hintTitle: 'Enter your Mobile Number'),
@@ -265,19 +270,21 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                       await Future.value(uploadTaskPan);
                       var newUrlPan = await ref2.getDownloadURL();
 
-                      if (await QueryRepo().submitProviderVerification(
+                      if (await QueryRepo().submitProviderVerification(name:
                         _usernameController.text,
+                        email:
                         _emailController.text,
-                        _mobileController.text,
-                        _descriptionController.text,
-                        _fssai_noController.text,
-                        _gst_noController.text,
-                        newUrl.toString(),
-                        newUrlAadhar.toString(),
-                        newUrlPan.toString(),
-                        UserStore().lat,
-                        UserStore().lang,
-                        UserStore().address,
+                        mobile: _mobileController.text,
+                        description: _descriptionController.text,
+                        FSSAI: _fssai_noController.text,
+                        GST: _gst_noController.text,
+                        imageUrl: newUrl.toString(),
+                        aadhar: newUrlAadhar.toString(),
+                        pan: newUrlPan.toString(),
+                        lat: UserStore().lat,
+                        long: UserStore().lang,
+                        address: UserStore().address,
+                        password: _passwordController.text
                       )) {
                         Navigator.pushNamed(context, AdminDashBoard.id);
                       }
