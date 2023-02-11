@@ -1,3 +1,5 @@
+import 'package:eat_easy/repositories/query_repo.dart';
+import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,147 +38,60 @@ class _ProviderVerificationState extends State<ProviderVerification> {
 
   final _formKey = GlobalKey<FormState>();
 
-  String? _username;
-  String? _emailID;
-  String? _mobile;
-  String? _description;
-  String? _fssai_no;
-  String? _location;
-  String? _gst_no;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Provider Verification"),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Username",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter a username";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _username = value,
-              ),
-              Container(
-                height: 20, // specify the height
-                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
-              ),
-
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Email ID",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter an email ID";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _emailID = value,
-              ),
-              Container(
-                height: 20, // specify the height
-                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
-              ),
-
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Mobile",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter a mobile number";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _mobile = value,
-              ),
-              Container(
-                height: 20, // specify the height
-                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
-              ),
-
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Description",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter a description";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _description = value,
-              ),
-              Container(
-                height: 20, // specify the height
-                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
-              ),
-
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "FSSAI No.",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter an FSSAI number";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _fssai_no = value,
-              ),
-              Container(
-                height: 20, // specify the height
-                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "Location",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter a location";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _location = value,
-              ),
-              Container(
-                height: 20, // specify the height
-                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
-              ),
-
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: "GST No.",
-                ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter a GST number";
-                  }
-                  return null;
-                },
-                onSaved: (value) => _gst_no = value,
-              ),
-              Container(
-                height: 75,
-                width: double.infinity,
-              ),
-
+              LabeledTextFormField(
+                  controller: _usernameController,
+                  title: 'Username',
+                  hintTitle: 'Enter your name'),
+              Spacer(),
+              LabeledTextFormField(
+                  controller: _emailController,
+                  title: 'Email',
+                  hintTitle: 'Enter your Email'),
+              Spacer(),
+              LabeledTextFormField(
+                  controller: _mobileController,
+                  title: 'Mobile',
+                  hintTitle: 'Enter your Mobile Number'),
+              Spacer(),
+              LabeledTextFormField(
+                  controller: _descriptionController,
+                  title: 'Description',
+                  hintTitle: 'Enter your Description'),
+              Spacer(),
+              LabeledTextFormField(
+                  controller: _fssai_noController,
+                  title: 'FSSAI No.',
+                  hintTitle: 'Enter your FSSAI no.'),
+              Spacer(),
+              LabeledTextFormField(
+                  controller: _gst_noController,
+                  title: 'GST No.',
+                  hintTitle: 'Enter your GST no.'),
+              Spacer(flex: 3),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (await QueryRepo().submitProviderVerification(
+                    _usernameController.text,
+                    _emailController.text,
+                    _mobileController.text,
+                    _descriptionController.text,
+                    _fssai_noController.text,
+                    _gst_noController.text,
+                  )) {
+                    Navigator.pushNamed(context, AdminDashBoard.id);
+                  }
+                },
                 child: const Text("Submit"),
               ),
             ],
