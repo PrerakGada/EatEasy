@@ -1,4 +1,5 @@
 import 'package:eat_easy/screens/login_screen.dart';
+import 'package:eat_easy/screens/provider_verification.dart';
 import 'package:eat_easy/screens/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,8 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         SignUpScreen.id: (context) => SignUpScreen(),
         OnboardingScreen.id: (context) => OnboardingScreen(),
+        ProviderVerification.id: (context) =>ProviderVerification(),
+
       },
     );
   }

@@ -80,6 +80,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             context,
                             PageRouteBuilder(
                               pageBuilder: (_, __, ___) => AdminDashBoard(),
+                              //pageBuilder: (_, __, ___) => LoginScreen(),
                               transitionDuration:
                                   const Duration(milliseconds: 300),
                               transitionsBuilder: (_, a, __, c) =>
