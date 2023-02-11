@@ -2,6 +2,7 @@ import 'package:eat_easy/screens/Customer/customer_home.dart';
 import 'package:eat_easy/screens/dashboard_screen.dart';
 import 'package:eat_easy/screens/provider_verification.dart';
 import 'package:eat_easy/screens/signUp_screen.dart';
+import 'package:eat_easy/screens/user_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () => Navigator.popAndPushNamed(context, SignUpScreen.id)),
+                                  ..onTap = () => Navigator.popAndPushNamed(context, SignUpPage.id)),
                           ],
                         ),
                       ),
