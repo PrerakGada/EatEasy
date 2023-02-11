@@ -41,7 +41,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                         style: TextStyle(fontSize: 11, color: AppColors.black),
                       ),
                       Text(
-                        'Good Morning, ${UserStore().currUser['name']}',
+                        'Good Morning, Prerak',
                         style: TextStyle(fontSize: 22, color: AppColors.black),
                       )
                     ],
