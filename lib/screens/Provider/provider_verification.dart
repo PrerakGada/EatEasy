@@ -68,84 +68,78 @@ class _ProviderVerificationState extends State<ProviderVerification> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              (demo != null)
-                  ? Align(
-                      alignment: Alignment.center,
-                      child: DottedBorder(
-                        child: Image.file(
-                          demo!.absolute,
-                          height: 200,
-                          width: 280,
-                          scale: 2,
-                          fit: BoxFit.fill,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                (demo != null)
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: DottedBorder(
+                          child: Image.file(
+                            demo!.absolute,
+                            height: 200,
+                            width: 280,
+                            scale: 2,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      )
+                    : Align(
+                        alignment: Alignment.center,
+                        child: DottedBorder(
+                          child: MaterialButton(
+                            onPressed: () async {
+                              // if (kIsWeb) {
+                              //   startweb();
+                              // } else {
+                              onPickImageButtonClicked();
+                            },
+                            child: const Icon(Icons.image),
+                          ),
                         ),
                       ),
-                    )
-                  : Align(
-                      alignment: Alignment.center,
-                      child: DottedBorder(
-                        child: MaterialButton(
-                          onPressed: () async {
-                            // if (kIsWeb) {
-                            //   startweb();
-                            // } else {
-                            onPickImageButtonClicked();
-                          },
-                          child: const Icon(Icons.image),
-                        ),
-                      ),
-                    ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              LabeledTextFormField(
-                  controller: _usernameController,
-                  title: 'Username',
-                  hintTitle: 'Enter your name'),
-              
-              LabeledTextFormField(
-                  controller: _emailController,
-                  title: 'Email',
-                  hintTitle: 'Enter your Email'),
-              
-              LabeledTextFormField(
-                  controller: _mobileController,
-                  title: 'Mobile',
-                  hintTitle: 'Enter your Mobile Number'),
-              
-              LabeledTextFormField(
-                  controller: _descriptionController,
-                  title: 'Description',
-                  hintTitle: 'Enter your Description'),
-              
-              LabeledTextFormField(
-                  controller: _fssai_noController,
-                  title: 'FSSAI No.',
-                  hintTitle: 'Enter your FSSAI no.'),
-              
-              LabeledTextFormField(
-                  controller: _gst_noController,
-                  title: 'GST No.',
-                  hintTitle: 'Enter your GST no.'),
-              Spacer(flex: 3),
-              ElevatedButton(
-                onPressed: () async {
-                  if (await QueryRepo().submitProviderVerification(
-                    _usernameController.text,
-                    _emailController.text,
-                    _mobileController.text,
-                    _descriptionController.text,
-                    _fssai_noController.text,
-                    _gst_noController.text,
-                  )) {
-                    Navigator.pushNamed(context, AdminDashBoard.id);
-                  }
-                },
-                child: const Text("Submit"),
-              )
-            ],
+                SizedBox(height: 24),
+                LabeledTextFormField(
+                    controller: _usernameController,
+                    title: 'Username',
+                    hintTitle: 'Enter your name'),SizedBox(height: 24),
+                LabeledTextFormField(
+                    controller: _emailController,
+                    title: 'Email',
+                    hintTitle: 'Enter your Email'),SizedBox(height: 24),
+                LabeledTextFormField(
+                    controller: _mobileController,
+                    title: 'Mobile',
+                    hintTitle: 'Enter your Mobile Number'),SizedBox(height: 24),
+                LabeledTextFormField(
+                    controller: _descriptionController,
+                    title: 'Description',
+                    hintTitle: 'Enter your Description'),SizedBox(height: 24),
+                LabeledTextFormField(
+                    controller: _fssai_noController,
+                    title: 'FSSAI No.',
+                    hintTitle: 'Enter your FSSAI no.'),SizedBox(height: 24),
+                LabeledTextFormField(
+                    controller: _gst_noController,
+                    title: 'GST No.',
+                    hintTitle: 'Enter your GST no.'),SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (await QueryRepo().submitProviderVerification(
+                      _usernameController.text,
+                      _emailController.text,
+                      _mobileController.text,
+                      _descriptionController.text,
+                      _fssai_noController.text,
+                      _gst_noController.text,
+                    )) {
+                      Navigator.pushNamed(context, AdminDashBoard.id);
+                    }
+                  },
+                  child: const Text("Submit"),
+                )
+              ],
+            ),
           ),
         ),
       ),

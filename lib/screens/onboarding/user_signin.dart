@@ -1,3 +1,4 @@
+import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // Perform action
+                            Navigator.popAndPushNamed(context, ProviderVerification.id);
                           },
                           child: Text("Register as a Provider"),
                         ),
