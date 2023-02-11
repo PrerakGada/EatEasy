@@ -12,6 +12,8 @@ import 'firebase_options.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/splash_screen.dart';
+import 'screens/user_signin.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,9 +39,12 @@ class MyApp extends StatelessWidget {
         SplashScreen.id: (context) => const SplashScreen(),
         Dashboard.id: (context) => Dashboard(),
         LoginScreen.id: (context) => LoginScreen(),
-        SignUpScreen.id: (context) => SignUpScreen(),
+        //SignUpScreen.id: (context) => SignUpScreen(),
         OnboardingScreen.id: (context) => OnboardingScreen(),
         ProviderVerification.id: (context) => ProviderVerification(),
+        ProviderVerification.id: (context) =>ProviderVerification(),
+        SignUpPage.id: (context) => SignUpPage(),
+
       },
     );
   }
