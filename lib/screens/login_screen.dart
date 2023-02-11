@@ -1,3 +1,4 @@
+import 'package:eat_easy/screens/Customer/customer_home.dart';
 import 'package:eat_easy/screens/dashboard_screen.dart';
 import 'package:eat_easy/screens/signUp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
