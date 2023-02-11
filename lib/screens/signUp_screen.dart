@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../Theme/app_colors.dart';
 import '../widgets/LabeledTextFormField.dart';
 
+import 'package:flutter/gestures.dart';
+
 class SignUpScreen extends StatefulWidget {
   static const String id = '/signup';
 
@@ -68,7 +70,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       LabeledTextFormField(
                           controller: _passwordController,
                           title: 'Password',
-                          hintTitle: 'Enter your password'),
+                          hintTitle: 'Enter your password'
+                      ),
                       SizedBox(height: 24),
                       MaterialButton(
                         color: AppColors.primaryAccent,
@@ -101,9 +104,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           style: TextStyle(
                               fontSize: 18,
                               color: AppColors.black,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      )
+                      ),
+                      SizedBox(height: 15),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Already have an account?',
+                      style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: ' Click here!',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color(0xff06e357),
+                              fontWeight: FontWeight.bold,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () => Navigator.popAndPushNamed(context, LoginScreen.id)),
+                      ],
+                    ),
+                  ),
                     ],
                   ),
                 ),

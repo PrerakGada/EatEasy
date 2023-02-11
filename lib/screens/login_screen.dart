@@ -1,9 +1,12 @@
 import 'package:eat_easy/screens/dashboard_screen.dart';
+import 'package:eat_easy/screens/signUp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Theme/app_colors.dart';
 import '../widgets/LabeledTextFormField.dart';
+
+import 'package:flutter/gestures.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
@@ -99,7 +102,29 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: AppColors.black,
                               fontWeight: FontWeight.bold),
                         ),
-                      )
+                      ),
+                      SizedBox(height: 10),
+                      RichText(
+                        text: TextSpan(
+                          text: 'New here?',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: ' Sign Up!',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xff06e357),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => Navigator.popAndPushNamed(context, SignUpScreen.id)),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
