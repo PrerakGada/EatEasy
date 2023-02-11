@@ -1,9 +1,12 @@
+import 'package:eat_easy/screens/Customer/customer_home.dart';
 import 'package:eat_easy/screens/dashboard_screen.dart';
+import 'package:eat_easy/screens/provider_verification.dart';
 import 'package:eat_easy/screens/signUp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Theme/app_colors.dart';
+import '../repositories/auth_repo.dart';
 import '../widgets/LabeledTextFormField.dart';
 
 import 'package:flutter/gestures.dart';
@@ -77,22 +80,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         onPressed: () async {
 
-                          try {
-                            print('clicked');
-                            final credential = await FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                            );
-                            print('login successful');
+                          if( await AuthRepo().login(_emailController.text, _passwordController.text)) {
                             Navigator.popAndPushNamed(context, Dashboard.id);
-                          } on FirebaseAuthException catch (e) {
-
-                            if (e.code == 'user-not-found') {
-                              print('No user found for that email.');
-                            } else if (e.code == 'wrong-password') {
-                              print('Wrong password provided for that user.');
-                            }
+                          } else {
+                            print('error');
                           }
                         },
                         child: const Text(

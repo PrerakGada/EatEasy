@@ -46,9 +46,8 @@ dependencies:
   firebase_auth: ^4.2.6
   cloud_firestore: ^4.3.2
   page_transition: ^2.0.9
-  
-
-
+  firebase_storage: ^11.0.11
+  flutter_carousel_widget: ^2.0.2
 
 dev_dependencies:
   flutter_test:
