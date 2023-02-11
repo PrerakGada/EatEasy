@@ -42,9 +42,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: light_theme(),
         darkTheme: dark_theme(),
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         initialRoute: SplashScreen.id,
+        //initialRoute: AdminDashBoard.id,
+        //initialRoute: CustomerHome.id,
         // initialRoute: ProviderVerification.id,
         // initialRoute: AdminDashBoard.id,
         // initialRoute: CustomerHome.id,

@@ -22,7 +22,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(120),
+        preferredSize: const Size.fromHeight(160),
         child: Container(
           padding: const EdgeInsets.only(top: 70, left: 20, right: 30),
           child: Column(

@@ -16,7 +16,8 @@ ThemeData light_theme() => ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
       textTheme: const TextTheme(),
       primaryTextTheme: textTheme,
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.primaryAccent,
       scaffoldBackgroundColor: AppColors.white,
       iconTheme: const IconThemeData(color: AppColors.greyDark),
+
     );

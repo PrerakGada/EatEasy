@@ -19,17 +19,24 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
+  static const primary = Color(0xffc0e0b2);
+  static const primaryAccent = Color(0xff2e6836);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryAccent,
       body: SafeArea(
         child: Column(
+
           children: [
+
             Padding(
               padding: EdgeInsets.all(20.0),
               child: Form(
                 key: _formKey,
                 child: Column(
+
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     LabeledTextFormField(
@@ -56,16 +63,28 @@ class _SignUpPageState extends State<SignUpPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
+                          child: Text('Aldready a user',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
                           onPressed: () {
                             Navigator.pushNamed(context, LoginScreen.id);
                           },
-                          child: Text("Aldready a user"),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: primary,
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              textStyle: TextStyle(
+                                fontSize: 15,
+                              )),
                         ),
                         ElevatedButton(
+                          child: Text('Register as a Provider',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                           onPressed: () {
                             Navigator.popAndPushNamed(context, ProviderVerification.id);
                           },
-                          child: Text("Register as a Provider"),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: primary,
+                              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              textStyle: TextStyle(
+                                fontSize: 15,
+                              )),
                         ),
                       ],
                     ),
@@ -73,10 +92,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Perform action}
-                        },
-                        child: Text("Sign Up"),
+                        child: Text('Sign In',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: primary,
+                            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                            textStyle: TextStyle(
+                              color: primaryAccent,
+                                fontSize: 20,
+                               )),
                       ),
                     ),
                   ],

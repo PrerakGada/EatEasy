@@ -67,7 +67,7 @@ class LocationScreenState extends State<LocationScreen> {
             child: Text(location,
                 style: TextStyle(
                     overflow: TextOverflow.ellipsis,
-                    color: AppColors.greyLight)),
+                    color: Colors.black)),
           ),
           Icon(Icons.location_on_outlined),
           // const ImageIcon(

@@ -40,14 +40,14 @@ class _LabeledTextFormFieldState extends State<LabeledTextFormField> {
       children: [
         Text(
           widget.title,
-          style: TextStyle(color: AppColors.greyLight),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 8),
         Container(
           width: widget.width == null ? null : widget.width,
           padding: EdgeInsets.only(left: 16),
           decoration: BoxDecoration(
-            color: AppColors.black,
+            color: AppColors.primary,
             borderRadius: BorderRadius.circular(8),
           ),
           child: TextFormField(

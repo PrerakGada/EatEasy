@@ -1,3 +1,5 @@
+import 'package:eat_easy/screens/onboarding/splash_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -68,7 +70,10 @@ class SideBar extends StatelessWidget {
           ListTile(
             title: Text('Log Out'),
             leading: Icon(Icons.exit_to_app),
-            onTap: () => null,
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.popAndPushNamed(context, SplashScreen.id);
+            },
           ),
         ],
       ),

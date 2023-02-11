@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/repositories/query_repo.dart';
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
@@ -66,8 +67,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryAccent,
       appBar: AppBar(
         title: const Text("Provider Verification"),
+        elevation: 0,
+        backgroundColor: AppColors.primaryAccent,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -132,7 +136,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 Container(
                   padding: EdgeInsets.only(left: 16),
                   decoration: BoxDecoration(
-                    color: AppColors.black,
+                    color: AppColors.primary,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: LocationScreen(),
@@ -160,14 +164,29 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     )) {
                       Navigator.pushNamed(context, AdminDashBoard.id);
                     }
+
                   },
-                  child: const Text("Submit"),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      textStyle: TextStyle(
+                        fontSize: 15,
+
+                      )),
+                  /**/child: const Text("Submit",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black) ),
                 ),
                 ElevatedButton(
                   onPressed: () {
                       Navigator.pushNamed(context, LoginScreen.id);
                   },
-                  child: const Text("Already registered?"),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      textStyle: TextStyle(
+                        fontSize: 15,
+
+                      )),
+                  child: const Text("Already registered?",style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
                 ),
               ],
             ),
