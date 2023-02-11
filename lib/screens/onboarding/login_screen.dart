@@ -1,5 +1,6 @@
 import 'package:eat_easy/screens/Customer/customer_home.dart';
 import 'package:eat_easy/screens/onboarding/user_signin.dart';
+import 'package:eat_easy/screens/user_home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -79,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () async {
                           if (await AuthRepo().login(_emailController.text,
                               _passwordController.text)) {
-                            Navigator.popAndPushNamed(context, CustomerHome.id);
+                            Navigator.popAndPushNamed(context, HomeScreen.id);
                           } else {
                             print('error');
                           }

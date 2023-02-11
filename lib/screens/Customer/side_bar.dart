@@ -14,6 +14,7 @@ class SideBar extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
+              // Scaffold.of(context).closeDrawer();
               Navigator.push(
                 context,
                 PageTransition(

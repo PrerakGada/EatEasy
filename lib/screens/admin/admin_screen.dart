@@ -27,7 +27,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
           padding: const EdgeInsets.only(top: 70, left: 20, right: 30),
           child: Column(
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
@@ -63,7 +63,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Row(
                         children: [
