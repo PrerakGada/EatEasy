@@ -56,7 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 effect: const WormEffect(
                   dotWidth: 16,
                   dotHeight: 4,
-                  activeDotColor: AppColors.primary,
+                  activeDotColor: AppColors.primaryAccent,
                 ),
               ),
             ),
@@ -65,7 +65,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: MaterialButton(
                 height: 42,
                 minWidth: MediaQuery.of(context).size.width * 0.9,
-                color: AppColors.primary,
+                color: AppColors.primaryAccent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

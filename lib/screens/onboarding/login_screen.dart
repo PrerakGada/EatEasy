@@ -32,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16),
@@ -41,17 +42,20 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const Text(
                   'Login',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold,color: Colors.black),
+                ),
+                SizedBox(
+                  height: 35,
                 ),
                 const SizedBox(height: 24),
                 Container(
-                  height: 300,
-                  width: 300,
+                  height: 500,
+                  width: 500,
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     border: Border.all(),
                     borderRadius: BorderRadius.circular(16),
-                    color: AppColors.grey,
+                    color: AppColors.primaryAccent,
                   ),
                   child: Column(
                     // mainAxisSize: MainAxisSize.min,
@@ -61,14 +65,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: _emailController,
                           title: 'Email',
                           hintTitle: 'Enter your email'),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 30),
                       LabeledTextFormField(
                           controller: _passwordController,
                           title: 'Password',
                           hintTitle: 'Enter your password'),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 30),
                       MaterialButton(
-                        color: AppColors.primaryAccent,
+                        color: AppColors.primary,
                         minWidth: 200,
                         padding: const EdgeInsets.all(16),
                         shape: const RoundedRectangleBorder(
@@ -92,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 50),
                       RichText(
                         text: TextSpan(
                           text: 'New here?',
