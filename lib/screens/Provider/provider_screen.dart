@@ -1,22 +1,22 @@
 import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/screens/admin/check_applications_screen.dart';
-import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:eat_easy/screens/onboarding/login_screen.dart';
 
 import '../Customer/user_profile_screen.dart';
 
-class AdminDashBoard extends StatefulWidget {
-  const AdminDashBoard({super.key});
+class ProviderDashBoard extends StatefulWidget {
+  const ProviderDashBoard({super.key});
 
-  static const String id = '/retailer-screen';
+  static const String id = '/provider-screen';
 
   @override
-  State<AdminDashBoard> createState() => _AdminDashBoardState();
+  State<ProviderDashBoard> createState() => _ProviderDashBoardState();
 }
 
-class _AdminDashBoardState extends State<AdminDashBoard> {
+class _ProviderDashBoardState extends State<ProviderDashBoard> {
   @override
   Widget build(BuildContext context) {
     // final auth = Provider.of<AuthProvider>(context);
@@ -40,14 +40,14 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                         style: TextStyle(fontSize: 11, color: AppColors.black),
                       ),
                       Text(
-                        'Good Morning, Siddesh',
+                        'Hello, Dominos Mumbai!',
                         style: TextStyle(fontSize: 22, color: AppColors.black),
                       )
                     ],
                   ),
                   Spacer(),
                   CircleAvatar(
-                    backgroundImage: AssetImage('assets/admin.png'),
+                    backgroundImage: NetworkImage('https://www.nicepng.com/png/detail/841-8415635_851-x-706-4-free-shop-vector.png'),
                     maxRadius: 15,
                   )
                 ],
@@ -88,16 +88,12 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                   ),
                   InkWell(
                     onTap: () {
-                       // AuthController.instance.signOut();
-                       // auth.error = '';
-
-                       // FirebaseAuth.instance.signOut().then((value) {
-                         Navigator.push(
-                             context,
-                             MaterialPageRoute(
-                               builder: (context) => LoginScreen(),
-                             )
-                         );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          )
+                      );
                     },
                     child: Container(
                       height: 35,
@@ -150,8 +146,8 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Image.asset(
-                                "assets/mobile.png",
+                              Image.network(
+                                "https://as1.ftcdn.net/v2/jpg/03/93/16/02/1000_F_393160279_YiExhcGrtAeiFSBqacVuEDRVUT00wFmK.jpg",
                                 width: 50,
                                 height: 50,
                               ),
@@ -159,7 +155,7 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                                 height: 10,
                               ),
                               const Text(
-                                "Applications",
+                                "Food",
                                 style: TextStyle(
                                     color: AppColors.black,
                                     fontWeight: FontWeight.bold),

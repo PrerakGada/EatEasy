@@ -1,5 +1,7 @@
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:eat_easy/repositories/auth_repo.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
 import 'package:flutter/material.dart';
 
@@ -92,8 +94,24 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: ElevatedButton(
-                        child: Text('Sign In',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
-                        onPressed: () {},
+                        child: Text('Register',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+                        onPressed: () async {
+                          try {
+                            final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            );
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              print('The password provided is too weak.');
+                            } else if (e.code == 'email-already-in-use') {
+                              print('The account already exists for that email.');
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                          Navigator.popAndPushNamed(context, LoginScreen.id);
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: primary,
                             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

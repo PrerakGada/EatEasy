@@ -8,6 +8,8 @@ import '../../repositories/auth_repo.dart';
 import '../../widgets/LabeledTextFormField.dart';
 
 import 'package:flutter/gestures.dart';
+import 'package:eat_easy/stores/user_store.dart';
+import 'package:eat_easy/repositories/query_repo.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
@@ -27,6 +29,13 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await UserStore().getCurrUser();
+    });
   }
 
   @override
@@ -89,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                         child: const Text(
-                          'Login',
+                          'Login!',
                           style: TextStyle(
                               fontSize: 18,
                               color: AppColors.black,

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/Customer/customer_home.dart';
+import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen>
               ? isAdmin
                   ? const AdminDashBoard()
                   : isProvider
-                      ? const ProviderVerification()
+                      ? const ProviderDashBoard()
                       : CustomerHome()
               : const OnboardingScreen(),
           transitionDuration: const Duration(milliseconds: 300),
@@ -65,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
 
       print('vsanvjkasnv kjasf kjfs vjkdfs vjf');
       print( UserStore().currUser);
-      // print(await UserStore().getCurrUser());
+      print(await UserStore().getCurrUser());
       isLoggedIn = true;
       if (UserStore().currUser == 'admin') isAdmin = true;
       if (UserStore().currUser == 'provider') isProvider = true;
