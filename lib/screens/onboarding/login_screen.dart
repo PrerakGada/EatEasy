@@ -91,13 +91,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           onPressed: () async {
-                            // if (await AuthRepo().login(_emailController.text,
-                            //     _passwordController.text)) {
+                            if (await AuthRepo().login(_emailController.text,
+                                _passwordController.text)) {
                             Navigator.popAndPushNamed(
                                 context, ProviderDashBoard.id);
-                            // } else {
-                            //   print('error');
-                            // }
+                            } else {
+                              print('error');
+                            }
                           },
                           child: const Text(
                             'Login!',

@@ -17,6 +17,7 @@ class UserStore extends StateKeeper {
 
   late double lat;
   late double lang;
+  late String address;
 
   Future fetchPendingProviders() async {
     pendingProviders = await QueryRepo().fetchPendingApprovals();

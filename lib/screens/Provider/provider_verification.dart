@@ -5,6 +5,7 @@ import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/repositories/query_repo.dart';
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
+import 'package:eat_easy/stores/user_store.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -163,11 +164,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     title: 'Description',
                     hintTitle: 'Enter your Description',
                     maxLines: 5),
-                SizedBox(height: 24),
-                LabeledTextFormField(
-                    controller: _addressController,
-                    title: 'Address',
-                    hintTitle: 'Enter your Address'),
+                // SizedBox(height: 24),
+                // LabeledTextFormField(
+                //     controller: _addressController,
+                //     title: 'Address',
+                //     hintTitle: 'Enter your Address'),
                 SizedBox(height: 24),
                 Container(
                   padding: EdgeInsets.only(left: 16),
@@ -204,7 +205,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                             color: Colors.white,
                           )
                         : MaterialButton(
-                    color: AppColors.primary,
+                            color: AppColors.primary,
                             onPressed: () async {
                               // if (kIsWeb) {
                               //   startweb();
@@ -222,7 +223,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                             color: Colors.white,
                           )
                         : MaterialButton(
-                        color: AppColors.primary,
+                            color: AppColors.primary,
                             onPressed: () async {
                               // if (kIsWeb) {
                               //   startweb();
@@ -265,15 +266,19 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                       var newUrlPan = await ref2.getDownloadURL();
 
                       if (await QueryRepo().submitProviderVerification(
-                          _usernameController.text,
-                          _emailController.text,
-                          _mobileController.text,
-                          _descriptionController.text,
-                          _fssai_noController.text,
-                          _gst_noController.text,
-                          newUrl.toString(),
-                          newUrlAadhar.toString(),
-                          newUrlPan.toString())) {
+                        _usernameController.text,
+                        _emailController.text,
+                        _mobileController.text,
+                        _descriptionController.text,
+                        _fssai_noController.text,
+                        _gst_noController.text,
+                        newUrl.toString(),
+                        newUrlAadhar.toString(),
+                        newUrlPan.toString(),
+                        UserStore().lat,
+                        UserStore().lang,
+                        UserStore().address,
+                      )) {
                         Navigator.pushNamed(context, AdminDashBoard.id);
                       }
                     },

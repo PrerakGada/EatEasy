@@ -57,6 +57,7 @@ class LocationScreenState extends State<LocationScreen> {
             location = place.description!;
             UserStore().lat = lat;
             UserStore().lang = lang;
+            UserStore().address = place.description!;
           });
         }
       },
