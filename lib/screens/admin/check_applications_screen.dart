@@ -54,7 +54,7 @@ class _CheckApplicationsState extends State<CheckApplications> {
             )));
   }
 
-  void openModalSheet() async {
+  void openModalSheet(var currApplication) async {
     return showModalBottomSheet(
         backgroundColor: const Color.fromARGB(255, 236, 236, 236),
         isScrollControlled: true,
@@ -235,10 +235,8 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                 style: TextStyle(color: Colors.black),
                               ),
                               onPressed: () async {
-                                if (await QueryRepo().approveProvider()) {
-                                  setState(() {
-                                    status = "Approved";
-                                  });
+                                if (await QueryRepo().approveProvider('${currApplication['name']}:${currApplication['email']}')) {
+                                  UserStore().fetchPendingProviders();
                                   Navigator.of(context).pop();
                                 }
                               },
@@ -270,7 +268,7 @@ class _CheckApplicationsState extends State<CheckApplications> {
                 return Padding(
                   padding: const EdgeInsets.all(16),
                   child: InkWell(
-                    onTap: () => openModalSheet(),
+                    onTap: () => openModalSheet(currApplication),
                     child: Container(
                       height: 140,
                       decoration: BoxDecoration(
@@ -306,8 +304,8 @@ class _CheckApplicationsState extends State<CheckApplications> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  "New Shahi Restaurant",
+                                Text(
+                                  currApplication['name'],
                                   style: TextStyle(
                                       color: AppColors.black,
                                       fontWeight: FontWeight.bold),
@@ -315,8 +313,7 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                 Text(
                                   "Opp old petrol pump Thane-401107",
                                   style: TextStyle(
-                                      color:
-                                          AppColors.black.withOpacity(0.4),
+                                      color: AppColors.black.withOpacity(0.4),
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -336,8 +333,7 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                       TextSpan(
                                           text: '${status}',
                                           style: TextStyle(
-                                              color: status.trim() ==
-                                                      "Approved"
+                                              color: status.trim() == "Approved"
                                                   ? Colors.green
                                                   : Colors.red))
                                     ],
@@ -358,8 +354,7 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                               color: AppColors.black)),
                                       TextSpan(
                                           text: 'Prerak Gada',
-                                          style: TextStyle(
-                                              color: Colors.green))
+                                          style: TextStyle(color: Colors.green))
                                     ],
                                   ),
                                 )

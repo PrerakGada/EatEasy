@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     Timer(
       const Duration(seconds: 2),
-          () => Navigator.pushReplacement(
+      () => Navigator.pushReplacement(
         context,
         PageRouteBuilder(
           pageBuilder: (_, __, ___) => const OnboardingScreen(),
@@ -55,12 +55,13 @@ class _SplashScreenState extends State<SplashScreen>
       body: Center(
         child: ScaleTransition(
           scale: _animation,
-          child: const Image(
-              image: AssetImage(
-                'assets/logo.png',
-              ),
-              height: 280,
-              width: 200),
+          child: Image(
+            image: AssetImage(
+              'assets/logo_nobg.png',
+            ),
+            // height: 480,
+            width: MediaQuery.of(context).size.width,
+          ),
         ),
       ),
     );

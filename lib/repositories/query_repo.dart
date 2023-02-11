@@ -41,11 +41,11 @@ class QueryRepo {
     }
   }
 
-  Future approveProvider() async {
+  Future approveProvider(String id) async {
     try {
       _firestore
           .collection('providers')
-          .doc('KFC : something')
+          .doc(id)
           .update({'approval': true});
       return true;
     } catch (e) {
