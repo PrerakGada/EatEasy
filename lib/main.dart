@@ -6,7 +6,6 @@ import 'package:eat_easy/screens/Customer/user_profile_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
-import 'package:eat_easy/screens/onboarding/signUp_screen.dart';
 import 'package:eat_easy/screens/user_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -48,8 +47,8 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         // initialRoute: SplashScreen.id,
-        //initialRoute: AdminDashBoard.id,
-        initialRoute: ExploreMap.id,
+        initialRoute: ProviderVerification.id,
+        // initialRoute: ExploreMap.id,
         // initialRoute: ProfileScreen.id,
         // initialRoute: AdminDashBoard.id,
         // initialRoute: CustomerHome.id,

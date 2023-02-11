@@ -47,15 +47,19 @@ class QueryRepo {
   }
 
   Future submitProviderVerification(
-      String name,
-      String email,
-      String mobile,
-      String description,
-      String FSSAI,
-      String GST,
-      String imageUrl,
-      String aadhar,
-      String pan) async {
+    String name,
+    String email,
+    String mobile,
+    String description,
+    String FSSAI,
+    String GST,
+    String imageUrl,
+    String aadhar,
+    String pan,
+    double lat,
+    double long,
+      String address,
+  ) async {
     try {
       _firestore.collection('providers').doc('$name:$email').set({
         'name': name,
@@ -67,7 +71,10 @@ class QueryRepo {
         'approval': false,
         'imageUrl': imageUrl,
         'panUrl': pan,
-        'aadharUrl': aadhar
+        'aadharUrl': aadhar,
+        'lat': lat,
+        'lang': long,
+        'address': address,
       });
       return true;
     } catch (e) {
