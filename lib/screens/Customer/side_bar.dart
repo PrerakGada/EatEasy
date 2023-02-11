@@ -47,12 +47,7 @@ class SideBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.favorite),
-            title: Text('Favorites'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Friends'),
+            title: Text('Your History'),
             onTap: () => null,
           ),
           ListTile(
@@ -61,8 +56,8 @@ class SideBar extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Request'),
+            leading: Icon(Icons.money),
+            title: Text('Donate'),
           ),
           Divider(),
           ListTile(

@@ -50,6 +50,8 @@ dependencies:
   flutter_carousel_widget: ^2.0.2
   image_picker: ^0.8.6+1
   dotted_border: ^2.0.0+3
+  popup_card: ^0.1.0
+  smooth_star_rating_null_safety: ^1.0.4+2
 
 
   google_maps_flutter: ^2.2.1

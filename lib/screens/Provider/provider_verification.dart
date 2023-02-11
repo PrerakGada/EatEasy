@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eat_easy/repositories/query_repo.dart';
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
+import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -161,7 +162,13 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     }
                   },
                   child: const Text("Submit"),
-                )
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                  },
+                  child: const Text("Already registered?"),
+                ),
               ],
             ),
           ),

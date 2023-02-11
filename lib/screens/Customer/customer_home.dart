@@ -4,11 +4,15 @@ import 'package:eat_easy/screens/Customer/SideBar.dart';
 import 'package:eat_easy/screens/Provider/InfoPage.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/stores/user_store.dart';
+import 'package:eat_easy/screens/Customer/side_bar.dart';
+import 'package:eat_easy/screens/Provider/info_page.dart';
+import 'package:eat_easy/screens/Provider/order.dart';
 import 'package:flutter/material.dart';
 
 import '../../Theme/app_colors.dart';
 
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:popup_card/popup_card.dart';
 
 class CustomerHome extends StatelessWidget {
   static const String id = '/customerhome';
@@ -143,7 +147,7 @@ class CustomerHome extends StatelessWidget {
                           const Spacer(),
                           ExpandableCarousel(
                             options: CarouselOptions(
-                              viewportFraction: 0.8,
+                              viewportFraction: 0.9,
                               enlargeCenterPage: true,
                               showIndicator: false,
                               floatingIndicator: true,
@@ -151,82 +155,160 @@ class CustomerHome extends StatelessWidget {
                             items: [1, 2, 3, 4, 5].map((i) {
                               return Builder(
                                 builder: (BuildContext context) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => InfoPage()));
-                                      },
-                                    child: Container(
-                                      height: 200,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 5.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: const Color(0xffaaaaaa),
-                                        image: const DecorationImage(
-                                            image: NetworkImage(
-                                                "https://content.jdmagicbox.com/comp/mumbai/46/022p5463446/catalogue/new-shahi-family-restaurant-mira-road-thane-tandoori-restaurants-c7lj66kagt.jpg?clr="),
-                                            fit: BoxFit.fill),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: 100,
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(15),
-                                              color: const Color(0xFFFFFF)
-                                                  .withOpacity(0.7),
+                                  return
+                                    PopupItemLauncher(
+                                      tag: 'Hotels',
+                                      child: Container(
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(15),
+                                          color: const Color(0xffaaaaaa),
+                                          image: const DecorationImage(
+                                              image: NetworkImage(
+                                                  "https://content.jdmagicbox.com/comp/mumbai/46/022p5463446/catalogue/new-shahi-family-restaurant-mira-road-thane-tandoori-restaurants-c7lj66kagt.jpg?clr="),
+                                              fit: BoxFit.fill),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              height: 100,
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(15),
+                                                color: const Color(0xFFFFFF)
+                                                    .withOpacity(0.7),
+                                              ),
+                                              child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  children: [
+                                                    const Text(
+                                                      "New Shahi Restaurant",
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          color: AppColors.black,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    Text(
+                                                      "Opp old petrol pump Thane-401107",
+                                                      style: TextStyle(
+                                                          color: AppColors.black
+                                                              .withOpacity(0.5),
+                                                          fontSize: 11,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    Text(
+                                                      "3.1km away",
+                                                      style: TextStyle(
+                                                          color: AppColors.black
+                                                              .withOpacity(0.5),
+                                                          fontSize: 11,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                  ]),
                                             ),
-                                            child: Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                                children: [
-                                                  const Text(
-                                                    "New Shahi Restaurant",
-                                                    style: TextStyle(
-                                                        fontSize: 18,
-                                                        color: AppColors.black,
-                                                        fontWeight:
-                                                        FontWeight.bold),
-                                                  ),
-                                                  Text(
-                                                    "Opp old petrol pump Thane-401107",
-                                                    style: TextStyle(
-                                                        color: AppColors.black
-                                                            .withOpacity(0.5),
-                                                        fontSize: 11,
-                                                        fontWeight:
-                                                        FontWeight.bold),
-                                                  ),
-                                                  const Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "4.5/5",
-                                                        style: TextStyle(
-                                                            color:
-                                                            AppColors.black,
-                                                            fontSize: 11,
-                                                            fontWeight:
-                                                            FontWeight.bold),
-                                                      ),
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Colors.yellow,
-                                                      ),
-                                                    ],
-                                                  )
-                                                ]),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                      popUp: PopUpItem(
+                                        padding: EdgeInsets.all(8),
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+                                        elevation: 2,
+                                        tag: 'Hotel',
+                                        child: Center(
+                                          child:
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 15),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text('New Shahi Restraunt', style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "4.5/5",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                    Icon(Icons.star, color: Colors.yellow,),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10,),
+                                                Text('It is fast food chain, founded in 1940 as a restaurant operated by Richard and Maurice McDonald, in San Bernardino, California, United States', style: TextStyle(color: Colors.black, fontSize: 15),),
+                                                SizedBox(height: 20,),
+                                                Text('Food Available', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
+                                                /*Text('1x Salad                      Expires on: 12/02/23', style: TextStyle(color: Colors.black, fontSize: 15,),),
+                                                Text('3x Burgers                  Expires on: 22/02/23', style: TextStyle(color: Colors.black, fontSize: 15,),),*/
+                                                SizedBox(
+                                                  height: 70,
+                                                  child: GridView.count(
+                                                    crossAxisCount: 2,
+                                                    childAspectRatio: 6,
+                                                    crossAxisSpacing: 1,
+                                                    mainAxisSpacing: 1,
+                                                  children: [
+                                                    Text('1x Salad', style: TextStyle(color: Colors.black, fontSize: 15,),),
+                                                    Text('Expires on: 12/02/23', style: TextStyle(color: Colors.black, fontSize: 15,),),
+                                                    Text('2x Salad', style: TextStyle(color: Colors.black, fontSize: 15,),),
+                                                    Text('Expires on: 13/02/23', style: TextStyle(color: Colors.black, fontSize: 15,),),
+                                                  ],
+                                                ),),
+
+                                                SizedBox(height: 20,),
+                                                Text('Reviews', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
+                                                SizedBox(height: 20,),
+                                                Text('Must visit', style: TextStyle(color: Colors.black, fontSize: 18),),
+                                                Text('User #1', style: TextStyle(color: Colors.black, fontSize: 15),),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Icon(Icons.star, color: Colors.yellow, size: 14.0),
+                                                    Icon(Icons.star, color: Colors.yellow, size: 14.0),
+                                                    Icon(Icons.star, color: Colors.yellow, size: 14.0),
+                                                    Icon(Icons.star, color: Colors.yellow, size: 14.0),
+                                                    Icon(Icons.star_border, color: Colors.grey, size: 14.0),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 8,),
+                                                Text('Good quick service. Need to keep a check on the hygiene. Tables need to be cleaned a little faster considering the table turnovers. ', style: TextStyle(color: Colors.black, fontSize: 15),),
+                                                SizedBox(height: 8,),
+                                                Center(
+                                                  child: MaterialButton(
+                                                    color: AppColors.primaryAccent,
+                                                    minWidth: 200,
+                                                    padding: const EdgeInsets.all(16),
+                                                    shape: const RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                        Radius.circular(16),
+                                                      ),
+                                                    ),
+                                                    onPressed: ()  {
+                                                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderFood()));
+                                                    },
+                                                    child: const Text(
+                                                      'Collect Food!',
+                                                      style: TextStyle(
+                                                          fontSize: 18,
+                                                          color: Colors.black,
+                                                          fontWeight: FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
                                 },
                               );
                             }).toList(),

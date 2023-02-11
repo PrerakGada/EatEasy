@@ -656,6 +656,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
+  popup_card:
+    dependency: "direct main"
+    description:
+      name: popup_card
+      sha256: "515a1a059559358d5184f6961ebebcbd2e9a0f52bcbf77f3279e0bb0b0f66621"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   process:
     dependency: transitive
     description:
@@ -781,6 +789,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0+2"
+  smooth_star_rating_null_safety:
+    dependency: "direct main"
+    description:
+      name: smooth_star_rating_null_safety
+      sha256: "8b3e56609da43577e5e72732d1dcad62fcabbd8131b228542f9ce2e9dc245dc1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4+2"
   source_span:
     dependency: transitive
     description:

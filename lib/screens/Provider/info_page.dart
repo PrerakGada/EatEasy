@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../Theme/app_colors.dart';
 
 class InfoPage extends StatefulWidget {
   const InfoPage({Key? key}) : super(key: key);
@@ -18,7 +19,11 @@ class _InfoPageState extends State<InfoPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network('https://cdn.vox-cdn.com/thumbor/ovQdcnuMVAYVQ-gSfOHDzCCs-vU=/0x0:6192x4128/1200x800/filters:focal(2601x1569:3591x2559)/cdn.vox-cdn.com/uploads/chorus_image/image/70073834/GettyImages_1331161454.0.jpg'),
+                Container(
+                  //color: Theme.of(context).accentColor,
+                  transform: Matrix4.translationValues(-7.5, 0.0, 0.0),
+                  child: Image.network('https://cdn.vox-cdn.com/thumbor/ovQdcnuMVAYVQ-gSfOHDzCCs-vU=/0x0:6192x4128/1200x800/filters:focal(2601x1569:3591x2559)/cdn.vox-cdn.com/uploads/chorus_image/image/70073834/GettyImages_1331161454.0.jpg'),
+                ),
                 SizedBox(height: 20,),
                 Text('McDonald\'s', style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),),
                 Row(
@@ -53,7 +58,26 @@ class _InfoPageState extends State<InfoPage> {
                   ],
                 ),
                 SizedBox(height: 8,),
-                Text('Good quick service. Need to keep a check on the hygiene. Tables need to be cleaned a little faster considering the table turnovers. The tray underlines need to be changed and not reused again. The food was alright. Fries a little under seasoned. The burger bun was crumbly. Coke was no ice but water was added a little extra to it.', style: TextStyle(color: Colors.black, fontSize: 15),),
+                Text('Good quick service. Need to keep a check on the hygiene. Tables need to be cleaned a little faster considering the table turnovers. ', style: TextStyle(color: Colors.black, fontSize: 15),),
+                SizedBox(height: 8,),
+                MaterialButton(
+                  color: AppColors.primaryAccent,
+                  minWidth: 200,
+                  padding: const EdgeInsets.all(16),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(16),
+                    ),
+                  ),
+                  onPressed: ()  {},
+                  child: const Text(
+                    'Collect Food!',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               ],
             ),
           ),
