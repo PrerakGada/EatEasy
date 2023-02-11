@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Theme/app_colors.dart';
+import 'Customer/customer_home.dart';
 import 'dashboard_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -80,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         : Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => ProviderVerification(),
+                              pageBuilder: (_, __, ___) => CustomerHome(),
                               //pageBuilder: (_, __, ___) => LoginScreen(),
                               transitionDuration:
                                   const Duration(milliseconds: 300),
