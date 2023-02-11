@@ -1,6 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+
+import '../../stores/user_store.dart';
 
 class EventsMap extends StatefulWidget {
   const EventsMap({
@@ -26,7 +28,8 @@ class _EventsMapState extends State<EventsMap> {
     setState(() {
       markers.add(
         Marker(
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
             infoWindow: InfoWindow(
               title: 'Hello world',
               snippet: 'Basic',
@@ -48,8 +51,6 @@ class _EventsMapState extends State<EventsMap> {
     zoom: 14.4746,
   );
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,7 +61,8 @@ class _EventsMapState extends State<EventsMap> {
         children: [
           SizedBox(
             height: 0,
-            child: ListView.builder(
+            child:Consumer<UserStore>(builder: (_, userStore, __) {
+              return ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
                 markers.add(
@@ -68,9 +70,7 @@ class _EventsMapState extends State<EventsMap> {
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                         BitmapDescriptor.hueMagenta),
                     infoWindow: InfoWindow(
-                      onTap: () {
-
-                      },
+                      onTap: () {},
                       title: 'contractor',
                       snippet: 'name',
                     ),
@@ -83,8 +83,8 @@ class _EventsMapState extends State<EventsMap> {
                 );
                 return Container();
               },
-            ),
-          ),
+            );
+  })),
           Expanded(
             child: Container(
               child: GoogleMap(

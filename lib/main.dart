@@ -47,10 +47,10 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         // initialRoute: SplashScreen.id,
-        initialRoute: ProviderVerification.id,
+        // initialRoute: ProviderVerification.id,
         // initialRoute: ExploreMap.id,
         // initialRoute: ProfileScreen.id,
-        // initialRoute: AdminDashBoard.id,
+        initialRoute: AdminDashBoard.id,
         // initialRoute: CustomerHome.id,
         routes: {
           SplashScreen.id: (context) => const SplashScreen(),

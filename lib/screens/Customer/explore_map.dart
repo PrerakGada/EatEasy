@@ -14,11 +14,15 @@ class _ExploreMapState extends State<ExploreMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Explore'),),
+      appBar: AppBar(
+        title: Text('Explore'),
+      ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: SafeArea(child: EventsMap()),
+        child: SafeArea(
+          child: EventsMap(),
+        ),
       ),
     );
   }
