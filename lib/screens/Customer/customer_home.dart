@@ -1,6 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/Customer/SideBar.dart';
 import 'package:eat_easy/screens/Provider/InfoPage.dart';
+import 'package:eat_easy/screens/Provider/provider_verification.dart';
+import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
 
 import '../../Theme/app_colors.dart';
@@ -15,6 +18,9 @@ class CustomerHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(UserStore().currUser);
+    if (UserStore().currUser == 'provider') Navigator.of(context).popAndPushNamed(ProviderVerification.id);
+    if (UserStore().currUser == 'admin') Navigator.of(context).popAndPushNamed(AdminDashBoard.id);
     return Scaffold(
       key: _scaffoldState,
       drawer: const SideBar(),
