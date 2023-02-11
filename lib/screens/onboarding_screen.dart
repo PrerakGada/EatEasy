@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:eat_easy/screens/admin/admin_screen.dart';
 import 'package:eat_easy/screens/login_screen.dart';
 import 'package:eat_easy/screens/signUp_screen.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         : Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => SignUpScreen(),
+                              pageBuilder: (_, __, ___) => AdminDashBoard(),
                               transitionDuration:
                                   const Duration(milliseconds: 300),
                               transitionsBuilder: (_, a, __, c) =>
