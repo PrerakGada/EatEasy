@@ -30,6 +30,7 @@ class CustomerHome extends StatelessWidget {
       print(UserStore().currUser);
       if (UserStore().currUser == 'provider') Navigator.of(context).popAndPushNamed(ProviderDashBoard.id);
       if (UserStore().currUser == 'admin') Navigator.of(context).popAndPushNamed(AdminDashBoard.id);
+      else Navigator.of(context).popAndPushNamed(ProviderDashBoard.id);
     });
     return Scaffold(
       key: _scaffoldState,
