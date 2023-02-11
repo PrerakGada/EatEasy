@@ -1,5 +1,6 @@
 import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/screens/admin/check_applications_screen.dart';
+import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -92,12 +93,11 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                       // auth.error = '';
 
                       // FirebaseAuth.instance.signOut().then((value) {
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //         builder: (context) => WelcomeScreen(),
-                      //       ));
-                      // });
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ));
                     },
                     child: Container(
                       height: 35,
