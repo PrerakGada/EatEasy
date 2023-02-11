@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'edit_profile.dart';
+import 'information.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = '/profile';
@@ -72,7 +73,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: EdgeInsets.only(right: 15),
                           child: InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.push(
+                                    context,
+                                  MaterialPageRoute(builder: (context) => InformationPage()),
+                                );
                               },
                               child: Icon(Icons.help)),
                         ),
