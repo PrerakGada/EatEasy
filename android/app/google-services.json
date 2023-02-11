@@ -14,7 +14,6 @@
       },
       "oauth_client": [
         {
-<<<<<<< HEAD
           "client_id": "421097357772-gnufgumdm65art64ve8g08r2ib3833um.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -23,8 +22,6 @@
           }
         },
         {
-=======
->>>>>>> f6b8ac53f508a69698b8472c299bd55397de409a
           "client_id": "421097357772-kq74cdh8dsncpjqrgcc3616i93bvsjct.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -40,7 +37,6 @@
             {
               "client_id": "421097357772-kq74cdh8dsncpjqrgcc3616i93bvsjct.apps.googleusercontent.com",
               "client_type": 3
-<<<<<<< HEAD
             },
             {
               "client_id": "421097357772-el2j9g3kbe6956d51ovqlplu8kjfga9u.apps.googleusercontent.com",
@@ -48,8 +44,6 @@
               "ios_info": {
                 "bundle_id": "com.prerak.eatEasy.RunnerTests"
               }
-=======
->>>>>>> f6b8ac53f508a69698b8472c299bd55397de409a
             }
           ]
         }
