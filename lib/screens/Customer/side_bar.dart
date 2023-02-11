@@ -1,3 +1,4 @@
+import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/screens/onboarding/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,7 @@ class SideBar extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                PageTransition(
-                  child: ProfileScreen(),
-                  type: PageTransitionType.fade,
-                ),
-              );
+              Navigator.popAndPushNamed(context, ProfileScreen.id);
             },
             child: UserAccountsDrawerHeader(
               accountName: Text(

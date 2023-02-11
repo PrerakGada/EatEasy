@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
+  static const String id = '/profile';
   const ProfileScreen({super.key});
 
   @override
@@ -20,10 +21,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-            decoration: BoxDecoration(color: Colors.white),
+    return Scaffold(
+      appBar: AppBar(title: Text('Profile'),),
+      body: SafeArea(
+        child: Container(
+            // decoration: BoxDecoration(color: Colors.white),
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.only(top: 20),
@@ -45,6 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: EdgeInsets.only(right: 15),
                           child: InkWell(
                               onTap: () {
+                                Navigator.pop(context);
                                 // final provider =
                                 //     Provider.of<GoogleSignInProvider>(context,
                                 //         listen: false);
