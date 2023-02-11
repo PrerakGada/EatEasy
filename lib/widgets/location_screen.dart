@@ -1,3 +1,4 @@
+import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places_hoc081098/flutter_google_places_hoc081098.dart';
@@ -54,8 +55,8 @@ class LocationScreenState extends State<LocationScreen> {
           final lang = geometry.location.lng;
           setState(() {
             location = place.description!;
-            // Provider.of<UserStore>(context, listen: false)
-            //     .localPost['location'] = '$lat,$lang';
+            UserStore().lat = lat;
+            UserStore().lang = lang;
           });
         }
       },

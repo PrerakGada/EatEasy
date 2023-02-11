@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/Customer/customer_home.dart';
+import 'package:eat_easy/screens/Customer/explore_map.dart';
 import 'package:eat_easy/screens/Customer/user_profile_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
@@ -47,10 +48,9 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         // initialRoute: SplashScreen.id,
-        initialRoute: SplashScreen.id,
         //initialRoute: AdminDashBoard.id,
-        //initialRoute: CustomerHome.id,
-        // initialRoute: ProviderVerification.id,
+        initialRoute: ExploreMap.id,
+        // initialRoute: ProfileScreen.id,
         // initialRoute: AdminDashBoard.id,
         // initialRoute: CustomerHome.id,
         routes: {
@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
           HomeScreen.id: (context) => HomeScreen(),
           ProviderDashBoard.id: (context) => ProviderDashBoard(),
           ProfileScreen.id: (context) => ProfileScreen(),
+          ExploreMap.id: (context) => ExploreMap(),
         },
       ),
     );

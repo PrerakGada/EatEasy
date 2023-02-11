@@ -6,14 +6,14 @@ final _firestore = FirebaseFirestore.instance;
 
 class QueryRepo {
   Future fetchCurrUser() async {
-    var email = FirebaseAuth.instance.currentUser?.email;
+    final email = FirebaseAuth.instance.currentUser?.email;
     if (email != null) {
       _firestore.collection('users').get().then((value) {
         for (var doc in value.docs) {
           final docData = doc.data();
           if (docData['email'] == email) {
-            UserStore().currUser = docData['role'];
-            //break;
+            // UserStore().currUser = docData['role'];
+            return docData;
           }
         }
         print(UserStore().currUser);

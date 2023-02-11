@@ -15,6 +15,9 @@ class UserStore extends StateKeeper {
 
   var currUser;
 
+  late double lat;
+  late double lang;
+
   Future fetchPendingProviders() async {
     pendingProviders = await QueryRepo().fetchPendingApprovals();
     print(pendingProviders);
@@ -29,8 +32,8 @@ class UserStore extends StateKeeper {
 
   Future getCurrUser() async {
     if (FirebaseAuth.instance.currentUser != null) {
-      return await QueryRepo().fetchCurrUser();
-      // return currUser;
+      currUser = await QueryRepo().fetchCurrUser();
+      return currUser;
     }
   }
 }
