@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
+import '../../Theme/app_colors.dart';
+import '../../widgets/location_screen.dart';
+
 class ProviderVerification extends StatefulWidget {
   static const String id = '/ProviderVerification';
 
@@ -26,6 +29,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
   final TextEditingController _fssai_noController = TextEditingController();
   final TextEditingController _gst_noController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   File? demo;
 
   void onPickImageButtonClicked() async {
@@ -47,6 +51,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
   @override
   void dispose() {
     super.dispose();
+    _addressController.dispose();
     _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -57,8 +62,6 @@ class _ProviderVerificationState extends State<ProviderVerification> {
     _descriptionController.dispose();
   }
 
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,9 +69,9 @@ class _ProviderVerificationState extends State<ProviderVerification> {
         title: const Text("Provider Verification"),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 (demo != null)
@@ -101,28 +104,49 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 SizedBox(height: 24),
                 LabeledTextFormField(
                     controller: _usernameController,
-                    title: 'Username',
-                    hintTitle: 'Enter your name'),SizedBox(height: 24),
+                    title: 'Name',
+                    hintTitle: 'Enter your name'),
+                SizedBox(height: 24),
                 LabeledTextFormField(
                     controller: _emailController,
                     title: 'Email',
-                    hintTitle: 'Enter your Email'),SizedBox(height: 24),
+                    hintTitle: 'Enter your Email'),
+                SizedBox(height: 24),
                 LabeledTextFormField(
                     controller: _mobileController,
                     title: 'Mobile',
-                    hintTitle: 'Enter your Mobile Number'),SizedBox(height: 24),
+                    hintTitle: 'Enter your Mobile Number'),
+                SizedBox(height: 24),
                 LabeledTextFormField(
                     controller: _descriptionController,
                     title: 'Description',
-                    hintTitle: 'Enter your Description'),SizedBox(height: 24),
+                    hintTitle: 'Enter your Description',
+                    maxLines: 5),
+                SizedBox(height: 24),
+                LabeledTextFormField(
+                    controller: _addressController,
+                    title: 'Address',
+                    hintTitle: 'Enter your Address'),
+                SizedBox(height: 24),
+                Container(
+                  padding: EdgeInsets.only(left: 16),
+                  decoration: BoxDecoration(
+                    color: AppColors.black,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: LocationScreen(),
+                ),
+                SizedBox(height: 24),
                 LabeledTextFormField(
                     controller: _fssai_noController,
                     title: 'FSSAI No.',
-                    hintTitle: 'Enter your FSSAI no.'),SizedBox(height: 24),
+                    hintTitle: 'Enter your FSSAI no.'),
+                SizedBox(height: 24),
                 LabeledTextFormField(
                     controller: _gst_noController,
                     title: 'GST No.',
-                    hintTitle: 'Enter your GST no.'),SizedBox(height: 24),
+                    hintTitle: 'Enter your GST no.'),
+                SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () async {
                     if (await QueryRepo().submitProviderVerification(
