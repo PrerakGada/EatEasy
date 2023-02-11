@@ -2,12 +2,17 @@ import 'dart:io';
 
 import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/Theme/typography.dart';
+import 'package:eat_easy/repositories/query_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+
+import '../../stores/user_store.dart';
 
 class CheckApplications extends StatefulWidget {
   const CheckApplications({super.key});
+
   static const String id = 'retailer-screen';
 
   @override
@@ -16,6 +21,7 @@ class CheckApplications extends StatefulWidget {
 
 class _CheckApplicationsState extends State<CheckApplications> {
   String status = 'Pending';
+
   Widget aadharDialog(setmodalstate) {
     return AlertDialog(
         title: (const Center(child: Text("Documents"))),
@@ -208,19 +214,10 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                 "Reject",
                                 style: TextStyle(color: Colors.black),
                               ),
-                              onPressed: () {
-                                // setState(() {
-                                //   optionsmap = {
-                                //     // "date":
-                                //     //     DateTime.now().toString().split(" ")[0]
-                                //     "date": ""
-                                //   };
-                                // });
-                                // selectedDate = DateTime.now();
-                                // orderIdController.clear();
-                                // seller = Seller();
-                                // Navigator.of(context).pop();
-                                // _pagingController.refresh();
+                              onPressed: () async {
+                                if (await QueryRepo().fetchPendingApprovals()) {
+                                  Navigator.of(context).pop();
+                                }
                               },
                             ),
                             const Spacer(),
@@ -237,11 +234,13 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                 "Approve",
                                 style: TextStyle(color: Colors.black),
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  status = "Approved";
-                                });
-                                Navigator.of(context).pop();
+                              onPressed: () async {
+                                if (await QueryRepo().approveProvider()) {
+                                  setState(() {
+                                    status = "Approved";
+                                  });
+                                  Navigator.of(context).pop();
+                                }
                               },
                             ),
                           ],
@@ -259,130 +258,121 @@ class _CheckApplicationsState extends State<CheckApplications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey,
       appBar: AppBar(title: const Text("Applications")),
       body: Padding(
         padding: const EdgeInsets.only(left: 10, top: 20, right: 10),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  onTap: () => openModalSheet(),
-                  child: Container(
-                    width: double.infinity,
-                    height: 140,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 245, 245, 245),
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.4),
-                          offset: const Offset(
-                            5.0,
-                            5.0,
-                          ),
-                          blurRadius: 10.0,
-                          spreadRadius: 2.0,
-                        ), //BoxShadow
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 15),
-                      child: Column(
+        child: Consumer<UserStore>(builder: (_, userStore, __) {
+          return ListView.builder(
+              itemCount: userStore.pendingProviders.length,
+              itemBuilder: (context, index) {
+                final currApplication = userStore.pendingProviders[index];
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: InkWell(
+                    onTap: () => openModalSheet(),
+                    child: Container(
+                      height: 140,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 245, 245, 245),
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.4),
+                            offset: const Offset(5.0, 5.0),
+                            blurRadius: 10.0,
+                            spreadRadius: 2.0,
+                          ), //BoxShadow
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
+                            Container(
+                              width: 150,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  image: const DecorationImage(
+                                      image: NetworkImage(
+                                          "https://content.jdmagicbox.com/comp/mumbai/46/022p5463446/catalogue/new-shahi-family-restaurant-mira-road-thane-tandoori-restaurants-c7lj66kagt.jpg?clr="),
+                                      fit: BoxFit.fill)),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  width: 150,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      image: const DecorationImage(
-                                          image: NetworkImage(
-                                              "https://content.jdmagicbox.com/comp/mumbai/46/022p5463446/catalogue/new-shahi-family-restaurant-mira-road-thane-tandoori-restaurants-c7lj66kagt.jpg?clr="),
-                                          fit: BoxFit.fill)),
+                                const Text(
+                                  "New Shahi Restaurant",
+                                  style: TextStyle(
+                                      color: AppColors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "Opp old petrol pump Thane-401107",
+                                  style: TextStyle(
+                                      color:
+                                          AppColors.black.withOpacity(0.4),
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(
-                                  width: 10,
+                                  height: 5,
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "New Shahi Restaurant",
-                                      style: TextStyle(
-                                          color: AppColors.black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "Opp old petrol pump Thane-401107",
-                                      style: TextStyle(
-                                          color:
-                                              AppColors.black.withOpacity(0.4),
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                        children: <TextSpan>[
-                                          const TextSpan(
-                                              text: 'Status: ',
-                                              style: TextStyle(
-                                                  color: AppColors.black)),
-                                          TextSpan(
-                                              text: '${status}',
-                                              style: TextStyle(
-                                                  color: status.trim() ==
-                                                          "Approved"
-                                                      ? Colors.green
-                                                      : Colors.red))
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    RichText(
-                                      text: const TextSpan(
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                              text: 'Raised By: ',
-                                              style: TextStyle(
-                                                  color: AppColors.black)),
-                                          TextSpan(
-                                              text: 'Prerak Gada',
-                                              style: TextStyle(
-                                                  color: Colors.green))
-                                        ],
-                                      ),
-                                    )
-                                  ],
+                                RichText(
+                                  text: TextSpan(
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                    children: <TextSpan>[
+                                      const TextSpan(
+                                          text: 'Status: ',
+                                          style: TextStyle(
+                                              color: AppColors.black)),
+                                      TextSpan(
+                                          text: '${status}',
+                                          style: TextStyle(
+                                              color: status.trim() ==
+                                                      "Approved"
+                                                  ? Colors.green
+                                                  : Colors.red))
+                                    ],
+                                  ),
                                 ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                RichText(
+                                  text: const TextSpan(
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'Raised By: ',
+                                          style: TextStyle(
+                                              color: AppColors.black)),
+                                      TextSpan(
+                                          text: 'Prerak Gada',
+                                          style: TextStyle(
+                                              color: Colors.green))
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                          ]),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
+                );
+              });
+        }),
       ),
     );
   }

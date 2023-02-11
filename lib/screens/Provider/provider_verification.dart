@@ -100,56 +100,50 @@ class _ProviderVerificationState extends State<ProviderVerification> {
               // SizedBox(
               //   height: 10,
               // ),
-              Expanded(
-                child: Column(
-                  children: [
-                    LabeledTextFormField(
-                        controller: _usernameController,
-                        title: 'Username',
-                        hintTitle: 'Enter your name'),
-                    Spacer(),
-                    LabeledTextFormField(
-                        controller: _emailController,
-                        title: 'Email',
-                        hintTitle: 'Enter your Email'),
-                    Spacer(),
-                    LabeledTextFormField(
-                        controller: _mobileController,
-                        title: 'Mobile',
-                        hintTitle: 'Enter your Mobile Number'),
-                    Spacer(),
-                    LabeledTextFormField(
-                        controller: _descriptionController,
-                        title: 'Description',
-                        hintTitle: 'Enter your Description'),
-                    Spacer(),
-                    LabeledTextFormField(
-                        controller: _fssai_noController,
-                        title: 'FSSAI No.',
-                        hintTitle: 'Enter your FSSAI no.'),
-                    Spacer(),
-                    LabeledTextFormField(
-                        controller: _gst_noController,
-                        title: 'GST No.',
-                        hintTitle: 'Enter your GST no.'),
-                    Spacer(flex: 3),
-                    ElevatedButton(
-                      onPressed: () async {
-                        if (await QueryRepo().submitProviderVerification(
-                          _usernameController.text,
-                          _emailController.text,
-                          _mobileController.text,
-                          _descriptionController.text,
-                          _fssai_noController.text,
-                          _gst_noController.text,
-                        )) {
-                          Navigator.pushNamed(context, AdminDashBoard.id);
-                        }
-                      },
-                      child: const Text("Submit"),
-                    )
-                  ],
-                ),
+              LabeledTextFormField(
+                  controller: _usernameController,
+                  title: 'Username',
+                  hintTitle: 'Enter your name'),
+              
+              LabeledTextFormField(
+                  controller: _emailController,
+                  title: 'Email',
+                  hintTitle: 'Enter your Email'),
+              
+              LabeledTextFormField(
+                  controller: _mobileController,
+                  title: 'Mobile',
+                  hintTitle: 'Enter your Mobile Number'),
+              
+              LabeledTextFormField(
+                  controller: _descriptionController,
+                  title: 'Description',
+                  hintTitle: 'Enter your Description'),
+              
+              LabeledTextFormField(
+                  controller: _fssai_noController,
+                  title: 'FSSAI No.',
+                  hintTitle: 'Enter your FSSAI no.'),
+              
+              LabeledTextFormField(
+                  controller: _gst_noController,
+                  title: 'GST No.',
+                  hintTitle: 'Enter your GST no.'),
+              Spacer(flex: 3),
+              ElevatedButton(
+                onPressed: () async {
+                  if (await QueryRepo().submitProviderVerification(
+                    _usernameController.text,
+                    _emailController.text,
+                    _mobileController.text,
+                    _descriptionController.text,
+                    _fssai_noController.text,
+                    _gst_noController.text,
+                  )) {
+                    Navigator.pushNamed(context, AdminDashBoard.id);
+                  }
+                },
+                child: const Text("Submit"),
               )
             ],
           ),

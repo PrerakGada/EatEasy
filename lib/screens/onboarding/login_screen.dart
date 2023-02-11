@@ -1,14 +1,11 @@
 import 'package:eat_easy/screens/Customer/customer_home.dart';
-import 'package:eat_easy/screens/dashboard_screen.dart';
-import 'package:eat_easy/screens/provider_verification.dart';
-import 'package:eat_easy/screens/signUp_screen.dart';
-import 'package:eat_easy/screens/user_signin.dart';
+import 'package:eat_easy/screens/onboarding/user_signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../Theme/app_colors.dart';
-import '../repositories/auth_repo.dart';
-import '../widgets/LabeledTextFormField.dart';
+import '../../Theme/app_colors.dart';
+import '../../repositories/auth_repo.dart';
+import '../../widgets/LabeledTextFormField.dart';
 
 import 'package:flutter/gestures.dart';
 
@@ -80,9 +77,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         onPressed: () async {
-
-                          if( await AuthRepo().login(_emailController.text, _passwordController.text)) {
-                            Navigator.popAndPushNamed(context, Dashboard.id);
+                          if (await AuthRepo().login(_emailController.text,
+                              _passwordController.text)) {
+                            Navigator.popAndPushNamed(context, CustomerHome.id);
                           } else {
                             print('error');
                           }
@@ -113,7 +110,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () => Navigator.popAndPushNamed(context, SignUpPage.id)),
+                                  ..onTap = () => Navigator.popAndPushNamed(
+                                      context, SignUpPage.id)),
                           ],
                         ),
                       ),
