@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         // initialRoute: SplashScreen.id,
+        //initialRoute: SplashScreen.id,
         //initialRoute: AdminDashBoard.id,
         initialRoute: CustomerHome.id,
         // initialRoute: ProviderVerification.id,

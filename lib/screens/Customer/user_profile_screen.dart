@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
+import 'edit_profile.dart';
+
 class ProfileScreen extends StatefulWidget {
   static const String id = '/profile';
   const ProfileScreen({super.key});
@@ -22,7 +24,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Profile'),),
+      appBar: AppBar(title: Text('Profile'),backgroundColor: AppColors.primaryAccent, elevation: 0,),
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Container(
             // decoration: BoxDecoration(color: Colors.white),
@@ -35,62 +38,75 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const CircleAvatar(
                           backgroundImage: NetworkImage(
                               'https://instagram.fbom16-1.fna.fbcdn.net/v/t51.2885-19/297723103_131991389535733_3394524039300739566_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=J-GGDJKn0G8AX8UcjQq&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfCcsUikoXEmijklTduHePyrI9Ky7MtRYkVT9kNyY2Uo-A&oe=63EBA0F9&_nc_sid=8fd12b'),
-                          radius: 25,
+                          radius: 50,
                         ),
-                        const Spacer(),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Siddesh Shetty",
+                              style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold,fontSize: 25),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Mobile Number",
+                              style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold,fontSize: 20),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
                         Padding(
                           padding: EdgeInsets.only(right: 15),
                           child: InkWell(
                               onTap: () {
                                 Navigator.pop(context);
-                                // final provider =
-                                //     Provider.of<GoogleSignInProvider>(context,
-                                //         listen: false);
-                                // provider.logOut().then((value) {
-                                //   Navigator.push(
-                                //       context,
-                                //       MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             LoginSignupChoiceScreen(),
-                                //       ));
-                                // });
                               },
-                              child: Icon(Icons.logout)),
+                              child: Icon(Icons.help)),
                         ),
                       ],
+
                     ),
+                  ),
+
+                  const SizedBox(
+                    width: 10,
+                  ),
+
+                  ElevatedButton(
+                    child: Text("Edit profile"),
+                    onPressed: () {
+                      Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => EditProfilePage()),
+                       );
+                    },
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 100,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "Siddesh Shetty",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "Male",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
+
                   const SizedBox(
                     height: 10,
                   ),
-                  const Divider(),
+
                   const Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
                       "More Controls",
-                      style: TextStyle(color: AppColors.black),
+                      style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(
@@ -136,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               child: Text(
                                 "${itemList[index]}  >",
-                                style: TextStyle(color: AppColors.black),
+                                style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold),
                               ),
                             ),
                           );
@@ -148,89 +164,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Divider(
-                    color: Colors.black,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "Request Refund",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "You have not taken any plans yet.",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Divider(
-                    color: Colors.black,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "About Us",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "Know who we are and what are aim is.",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Divider(
-                    color: Colors.black,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "Contact Us",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "We are always here for you.",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Divider(
-                    color: Colors.black,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "App Policy",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text(
-                      "Learn why and what data we collect from you.",
-                      style: TextStyle(color: AppColors.black),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Divider(
-                    color: Colors.black,
-                  ),
+
+
                 ],
               ),
             )),
