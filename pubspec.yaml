@@ -48,6 +48,8 @@ dependencies:
   page_transition: ^2.0.9
   firebase_storage: ^11.0.11
   flutter_carousel_widget: ^2.0.2
+  image_picker: ^0.8.4+4
+  dotted_border: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:
