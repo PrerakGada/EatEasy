@@ -11,6 +11,7 @@ class UserStore extends StateKeeper {
 
   List providers = [];
   List pendingProviders = [];
+  List completedProviders = [];
 
   var currUser;
 
@@ -20,11 +21,16 @@ class UserStore extends StateKeeper {
     notifyListeners();
   }
 
+  Future fetchCompletedProviders() async {
+    completedProviders = await QueryRepo().fetchCompletedApprovals();
+    print(completedProviders);
+    notifyListeners();
+  }
+
   Future getCurrUser() async {
     if (FirebaseAuth.instance.currentUser != null) {
       return await QueryRepo().fetchCurrUser();
       // return currUser;
     }
-
   }
 }

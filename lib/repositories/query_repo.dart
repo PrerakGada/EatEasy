@@ -13,7 +13,6 @@ class QueryRepo {
           final docData = doc.data();
           if (docData['email'] == email) {
             UserStore().currUser = docData['role'];
-
           }
         }
       });
@@ -21,6 +20,7 @@ class QueryRepo {
   }
 
   var applications = [];
+  var applicationsCompleted = [];
 
   Future fetchPendingApprovals() async {
     await _firestore.collection("providers").get().then((value) {
@@ -33,14 +33,27 @@ class QueryRepo {
     return applications;
   }
 
+  Future fetchCompletedApprovals() async {
+    await _firestore.collection("providers").get().then((value) {
+      for (var doc in value.docs) {
+        // print("${doc.id} => ${doc.data()}");
+        final docData = doc.data();
+        if (docData['approval'] == true) applicationsCompleted.add(docData);
+      }
+    });
+    return applicationsCompleted;
+  }
+
   Future submitProviderVerification(
-    String name,
-    String email,
-    String mobile,
-    String description,
-    String FSSAI,
-    String GST,
-  ) async {
+      String name,
+      String email,
+      String mobile,
+      String description,
+      String FSSAI,
+      String GST,
+      String imageUrl,
+      String aadhar,
+      String pan) async {
     try {
       _firestore.collection('providers').doc('$name:$email').set({
         'name': name,
@@ -49,7 +62,10 @@ class QueryRepo {
         'mobile': mobile,
         'FSSAI': FSSAI,
         'GST': GST,
-        'approval': false
+        'approval': false,
+        'imageUrl': imageUrl,
+        'panUrl': pan,
+        'aadharUrl': aadhar
       });
       return true;
     } catch (e) {

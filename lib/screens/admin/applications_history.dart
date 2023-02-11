@@ -10,17 +10,17 @@ import 'package:provider/provider.dart';
 
 import '../../stores/user_store.dart';
 
-class CheckApplications extends StatefulWidget {
-  const CheckApplications({super.key});
+class AplicationHistory extends StatefulWidget {
+  const AplicationHistory({super.key});
 
   static const String id = 'retailer-screen';
 
   @override
-  State<CheckApplications> createState() => _CheckApplicationsState();
+  State<AplicationHistory> createState() => _AplicationHistoryState();
 }
 
-class _CheckApplicationsState extends State<CheckApplications> {
-  String status = 'Pending';
+class _AplicationHistoryState extends State<AplicationHistory> {
+  String status = 'Approved';
 
   Widget aadharDialog(setmodalstate, var current) {
     return AlertDialog(
@@ -215,9 +215,9 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                 style: TextStyle(color: Colors.black),
                               ),
                               onPressed: () async {
-                                if (await QueryRepo().fetchPendingApprovals()) {
-                                  Navigator.of(context).pop();
-                                }
+                                // if (await QueryRepo().fetchPendingApprovals()) {
+                                //   Navigator.of(context).pop();
+                                // }
                               },
                             ),
                             const Spacer(),
@@ -235,11 +235,11 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                 style: TextStyle(color: Colors.black),
                               ),
                               onPressed: () async {
-                                if (await QueryRepo().approveProvider(
-                                    '${currApplication['name']}:${currApplication['email']}')) {
-                                  UserStore().fetchPendingProviders();
-                                  Navigator.of(context).pop();
-                                }
+                                // if (await QueryRepo().approveProvider(
+                                //     '${currApplication['name']}:${currApplication['email']}')) {
+                                //   UserStore().fetchPendingProviders();
+                                //   Navigator.of(context).pop();
+                                // }
                               },
                             ),
                           ],
@@ -265,10 +265,11 @@ class _CheckApplicationsState extends State<CheckApplications> {
       body: Padding(
         padding: const EdgeInsets.only(left: 10, top: 10, right: 10),
         child: Consumer<UserStore>(builder: (_, userStore, __) {
+          print(userStore.completedProviders.length);
           return ListView.builder(
-              itemCount: userStore.pendingProviders.length,
+              itemCount: userStore.completedProviders.length,
               itemBuilder: (context, index) {
-                final currApplication = userStore.pendingProviders[index];
+                final currApplication = userStore.completedProviders[index];
                 return Padding(
                   padding: const EdgeInsets.all(5),
                   child: InkWell(

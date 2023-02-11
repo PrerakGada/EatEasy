@@ -188,7 +188,7 @@ class CustomerHome extends StatelessWidget {
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
-                                              const Row(
+                                              Row(
                                                 children: [
                                                   Text(
                                                     "4.5/5",
@@ -290,7 +290,7 @@ class CustomerHome extends StatelessWidget {
                                                     color: Colors.black,
                                                     fontSize: 15),
                                               ),
-                                              const Row(
+                                              Row(
                                                 children: <Widget>[
                                                   Icon(Icons.star,
                                                       color: Colors.yellow,
