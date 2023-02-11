@@ -56,10 +56,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
           key: _formKey,
           child: Column(
             children: [
-              LabeledTextFormField(
-                  controller: _usernameController,
-                  title: 'Username',
-                  hintTitle: 'Enter your Name'),
+
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: "Username",
@@ -72,6 +69,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 },
                 onSaved: (value) => _username = value,
               ),
+              Container(
+                height: 20, // specify the height
+                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
+              ),
+
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: "Email ID",
@@ -84,6 +86,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 },
                 onSaved: (value) => _emailID = value,
               ),
+              Container(
+                height: 20, // specify the height
+                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
+              ),
+
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: "Mobile",
@@ -96,6 +103,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 },
                 onSaved: (value) => _mobile = value,
               ),
+              Container(
+                height: 20, // specify the height
+                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
+              ),
+
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: "Description",
@@ -108,6 +120,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 },
                 onSaved: (value) => _description = value,
               ),
+              Container(
+                height: 20, // specify the height
+                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
+              ),
+
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: "FSSAI No.",
@@ -119,6 +136,10 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                   return null;
                 },
                 onSaved: (value) => _fssai_no = value,
+              ),
+              Container(
+                height: 20, // specify the height
+                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
               ),
               TextFormField(
                 decoration: const InputDecoration(
@@ -132,6 +153,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 },
                 onSaved: (value) => _location = value,
               ),
+              Container(
+                height: 20, // specify the height
+                width: double.infinity, // specify the width, use double.infinity to occupy the entire width
+              ),
+
               TextFormField(
                 decoration: const InputDecoration(
                   labelText: "GST No.",
@@ -144,6 +170,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                 },
                 onSaved: (value) => _gst_no = value,
               ),
+              Container(
+                height: 75,
+                width: double.infinity,
+              ),
+
               ElevatedButton(
                 onPressed: () {},
                 child: const Text("Submit"),
