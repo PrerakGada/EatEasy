@@ -12,7 +12,7 @@ class LabeledTextFormField extends StatefulWidget {
     this.maxLines = 1,
     this.icon,
     this.function,
-    this.width,
+    this.width, this.onclick,
   })  : controller = controller,
         super(key: key);
 
@@ -24,6 +24,8 @@ class LabeledTextFormField extends StatefulWidget {
   final IconData? icon;
   final VoidCallback? function;
   final double? width;
+  final VoidCallback? onclick;
+
 
   @override
   State<LabeledTextFormField> createState() => _LabeledTextFormFieldState();
@@ -51,6 +53,7 @@ class _LabeledTextFormFieldState extends State<LabeledTextFormField> {
           child: TextFormField(
             maxLines: widget.maxLines,
             controller: widget.controller,
+
             decoration: InputDecoration(
               suffixIcon: (widget.icon != null)
                   ? IconButton(
