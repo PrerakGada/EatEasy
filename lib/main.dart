@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         darkTheme: dark_theme(),
         themeMode: ThemeMode.dark,
         debugShowCheckedModeBanner: false,
-        initialRoute: ProviderVerification.id,
+        initialRoute: SplashScreen.id,
         // initialRoute: AdminDashBoard.id,
         // initialRoute: SplashScreen.id,
         routes: {

@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         controller: confirmPasswordController,
                         title: "Confirm Password",
                         hintTitle: "Confirm your password"),
-                    SizedBox(height: 30.0),
+                    SizedBox(height: 25.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
