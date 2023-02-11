@@ -189,7 +189,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     hintTitle: 'Enter your GST no.'),
                 SizedBox(height: 14),
                 Text(
-                  "Supporting Documents:",
+                  "Supporting Documents :",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -204,7 +204,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                             color: Colors.white,
                           )
                         : MaterialButton(
-                            color: Colors.white,
+                    color: AppColors.primary,
                             onPressed: () async {
                               // if (kIsWeb) {
                               //   startweb();
@@ -222,7 +222,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                             color: Colors.white,
                           )
                         : MaterialButton(
-                            color: Colors.white,
+                        color: AppColors.primary,
                             onPressed: () async {
                               // if (kIsWeb) {
                               //   startweb();
