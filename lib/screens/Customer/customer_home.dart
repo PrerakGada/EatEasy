@@ -15,9 +15,9 @@ class CustomerHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldState,
-      drawer: SideBar(),
+      drawer: const SideBar(),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
                 "https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg"),
@@ -28,7 +28,7 @@ class CustomerHome extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Row(
@@ -38,7 +38,7 @@ class CustomerHome extends StatelessWidget {
                       child: Material(
                         borderRadius: BorderRadius.circular(20),
                         elevation: 10,
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           radius: 22,
                           backgroundImage: NetworkImage(
                             'https://source.unsplash.com/50x50/?portrait',
