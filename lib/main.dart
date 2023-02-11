@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'Theme/dark_theme.dart';
 import 'Theme/light_theme.dart';
 
+import 'firebase_options.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/onboarding_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
