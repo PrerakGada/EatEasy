@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "421097357772",
+    "project_id": "eateasy-f20d6",
+    "storage_bucket": "eateasy-f20d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421097357772:android:dc253ed40366d5dc0cdd69",
+        "android_client_info": {
+          "package_name": "com.prerak.eat_easy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421097357772-gnufgumdm65art64ve8g08r2ib3833um.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prerak.eat_easy",
+            "certificate_hash": "aeaf865d2ef21f75598d9b78fc271faf5b577a75"
+          }
+        },
+        {
+          "client_id": "421097357772-kq74cdh8dsncpjqrgcc3616i93bvsjct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiLFBRlxYMV88onyigph9zoG-FGH4Ec3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421097357772-kq74cdh8dsncpjqrgcc3616i93bvsjct.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "421097357772-el2j9g3kbe6956d51ovqlplu8kjfga9u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.prerak.eatEasy.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
