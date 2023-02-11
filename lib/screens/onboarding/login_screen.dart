@@ -1,4 +1,5 @@
 import 'package:eat_easy/screens/Customer/customer_home.dart';
+import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/screens/admin/admin_screen.dart';
 import 'package:eat_easy/screens/onboarding/user_signin.dart';
@@ -90,13 +91,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           onPressed: () async {
-                            if (await AuthRepo().login(_emailController.text,
-                                _passwordController.text)) {
-                              Navigator.popAndPushNamed(
-                                  context, ProviderVerification.id);
-                            } else {
-                              print('error');
-                            }
+                            // if (await AuthRepo().login(_emailController.text,
+                            //     _passwordController.text)) {
+                            Navigator.popAndPushNamed(
+                                context, ProviderDashBoard.id);
+                            // } else {
+                            //   print('error');
+                            // }
                           },
                           child: const Text(
                             'Login!',

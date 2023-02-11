@@ -75,6 +75,26 @@ class QueryRepo {
     }
   }
 
+  Future uploadFood(
+    String name,
+    // String description,
+    String stock,
+    String description,
+    String imageUrl,
+  ) async {
+    try {
+      _firestore.collection('food').doc().set({
+        'name': name,
+        'description': description,
+        'imageUrl': imageUrl,
+        'stock': stock
+      });
+      return true;
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future approveProvider(String id) async {
     try {
       _firestore.collection('providers').doc(id).update({'approval': true});
