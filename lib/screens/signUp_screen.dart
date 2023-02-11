@@ -1,3 +1,4 @@
+import 'package:eat_easy/repositories/auth_repo.dart';
 import 'package:eat_easy/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -34,20 +35,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Sign Up',
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Container(
                   height: 400,
                   width: 300,
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppColors.grey,
                     border: Border.all(),
@@ -61,75 +62,66 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           controller: _nameController,
                           title: 'Name',
                           hintTitle: 'Enter your name'),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       LabeledTextFormField(
                           controller: _emailController,
                           title: 'Email',
                           hintTitle: 'Enter your email'),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       LabeledTextFormField(
                           controller: _passwordController,
                           title: 'Password',
-                          hintTitle: 'Enter your password'
-                      ),
-                      SizedBox(height: 24),
+                          hintTitle: 'Enter your password'),
+                      const SizedBox(height: 24),
                       MaterialButton(
                         color: AppColors.primaryAccent,
                         minWidth: 200,
-                        padding: EdgeInsets.all(16),
-                        shape: RoundedRectangleBorder(
+                        padding: const EdgeInsets.all(16),
+                        shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           ),
                         ),
                         onPressed: () async {
-                          try {
-                            final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                            );
-                          } on FirebaseAuthException catch (e) {
-                            if (e.code == 'weak-password') {
-                              print('The password provided is too weak.');
-                            } else if (e.code == 'email-already-in-use') {
-                              print('The account already exists for that email.');
-                            }
-                          } catch (e) {
-                            print(e);
+                          if (await AuthRepo().login(_emailController.text,
+                              _passwordController.text)) {
+                            Navigator.popAndPushNamed(context, LoginScreen.id);
+                          } else {
+                            print('Error in login');
                           }
-                          Navigator.popAndPushNamed(context, LoginScreen.id);
                         },
-                        child: Text(
+                        child: const Text(
                           'Sign Up',
                           style: TextStyle(
-                              fontSize: 18,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: AppColors.black,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      SizedBox(height: 15),
-                  RichText(
-                    text: TextSpan(
-                      text: 'Already have an account?',
-                      style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: ' Click here!',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Color(0xff06e357),
-                              fontWeight: FontWeight.bold,
-                            ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () => Navigator.popAndPushNamed(context, LoginScreen.id)),
-                      ],
-                    ),
-                  ),
+                      const SizedBox(height: 15),
+                      RichText(
+                        text: TextSpan(
+                          text: 'Already have an account?',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: ' Click here!',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xff06e357),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => Navigator.popAndPushNamed(
+                                      context, LoginScreen.id)),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
