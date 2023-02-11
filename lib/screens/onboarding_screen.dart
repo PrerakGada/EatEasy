@@ -4,6 +4,7 @@ import 'package:eat_easy/screens/admin/admin_screen.dart';
 import 'package:eat_easy/screens/login_screen.dart';
 import 'package:eat_easy/screens/provider_verification.dart';
 import 'package:eat_easy/screens/signUp_screen.dart';
+import 'package:eat_easy/screens/user_signin.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -81,7 +82,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         : Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => CustomerHome(),
+                              pageBuilder: (_, __, ___) => ProviderVerification(),
                               //pageBuilder: (_, __, ___) => LoginScreen(),
                               transitionDuration:
                                   const Duration(milliseconds: 300),
