@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         // initialRoute: SplashScreen.id,
         //initialRoute: SplashScreen.id,
         //initialRoute: AdminDashBoard.id,
-        initialRoute: CustomerHome.id,
+        initialRoute: ProviderDashBoard.id,
         // initialRoute: ProviderVerification.id,
         // initialRoute: AdminDashBoard.id,
         // initialRoute: CustomerHome.id,

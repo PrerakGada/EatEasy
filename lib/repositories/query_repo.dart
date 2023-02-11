@@ -23,6 +23,7 @@ class QueryRepo {
 
   var applications = [];
   var applicationsCompleted = [];
+  var orders = [];
 
   Future fetchPendingApprovals() async {
     await _firestore.collection("providers").get().then((value) {
@@ -33,6 +34,17 @@ class QueryRepo {
       }
     });
     return applications;
+  }
+
+  Future fetchOrders() async {
+    await _firestore.collection("food").get().then((value) {
+      for (var doc in value.docs) {
+        // print("${doc.id} => ${doc.data()}");
+        final docData = doc.data();
+        orders.add(docData);
+      }
+    });
+    return orders;
   }
 
   Future fetchCompletedApprovals() async {
@@ -76,18 +88,21 @@ class QueryRepo {
   }
 
   Future uploadFood(
-    String name,
-    // String description,
-    String stock,
-    String description,
-    String imageUrl,
-  ) async {
+      String name,
+      // String description,
+      String stock,
+      String description,
+      String imageUrl,
+      String datetime,
+      String timestamp) async {
     try {
       _firestore.collection('food').doc().set({
         'name': name,
         'description': description,
         'imageUrl': imageUrl,
-        'stock': stock
+        'stock': stock,
+        'date': datetime,
+        'timeStamp': timestamp
       });
       return true;
     } catch (e) {

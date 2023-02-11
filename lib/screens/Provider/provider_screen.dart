@@ -1,6 +1,7 @@
 import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/screens/Provider/upload_food_screen.dart';
 import 'package:eat_easy/screens/admin/check_applications_screen.dart';
+import 'package:eat_easy/screens/user_home_screen.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -130,7 +131,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: const SellCrops(),
+                            child: const UploadFood(),
                             type: PageTransitionType.fade,
                           ),
                         );
@@ -168,10 +169,11 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                     ),
                     InkWell(
                       onTap: () {
+                        UserStore().fetchPendingOrders();
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: SellCrops(),
+                            child: HomeScreen(),
                             type: PageTransitionType.fade,
                           ),
                         );

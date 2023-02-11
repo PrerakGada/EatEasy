@@ -12,12 +12,19 @@ class UserStore extends StateKeeper {
   List providers = [];
   List pendingProviders = [];
   List completedProviders = [];
+  List orders = [];
 
   var currUser;
 
   Future fetchPendingProviders() async {
     pendingProviders = await QueryRepo().fetchPendingApprovals();
     print(pendingProviders);
+    notifyListeners();
+  }
+
+  Future fetchPendingOrders() async {
+    orders = await QueryRepo().fetchOrders();
+    print(orders);
     notifyListeners();
   }
 

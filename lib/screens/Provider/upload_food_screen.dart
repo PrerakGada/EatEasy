@@ -14,19 +14,20 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../repositories/query_repo.dart';
 import '../Admin/admin_screen.dart';
 
-class SellCrops extends StatefulWidget {
-  const SellCrops({super.key});
+class UploadFood extends StatefulWidget {
+  const UploadFood({super.key});
 
   @override
-  State<SellCrops> createState() => _SellCropsState();
+  State<UploadFood> createState() => _UploadFoodState();
 }
 
-class _SellCropsState extends State<SellCrops> {
+class _UploadFoodState extends State<UploadFood> {
   TimeOfDay _timeOfDay = TimeOfDay(hour: 8, minute: 30);
   final CollectionReference profileList =
       FirebaseFirestore.instance.collection('users');
   late TimeOfDay time;
   late TimeOfDay picked;
+  var date = DateTime.now();
   File? demo;
   var title;
   final user = FirebaseAuth.instance.currentUser;
@@ -94,15 +95,15 @@ class _SellCropsState extends State<SellCrops> {
     });
   }
 
-  void _farmername() async {
-    final docUser = profileList.doc(user!.uid);
-    final snapshot = await docUser.get();
-    var data = snapshot.data() as Map;
-    // var _list = data.values.toList();
-    setState(() {
-      name = data["name"];
-    });
-  }
+  // void _farmername() async {
+  //   final docUser = profileList.doc(user!.uid);
+  //   final snapshot = await docUser.get();
+  //   var data = snapshot.data() as Map;
+  //   // var _list = data.values.toList();
+  //   setState(() {
+  //     name = data["name"];
+  //   });
+  // }
 
   // Future<void> createApplication(
   //   String title,
@@ -180,7 +181,7 @@ class _SellCropsState extends State<SellCrops> {
 
   @override
   Widget build(BuildContext context) {
-    _farmername();
+    // _farmername();
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -350,6 +351,7 @@ class _SellCropsState extends State<SellCrops> {
                         onPressed: () async {
                           if (_titleController.text.trim() != "" &&
                               _infoController.text.trim() != "") {
+                            print(data);
                             // createApplication(
                             //   _titleController.text.trim(),
                             //   _infoController.text.trim(),
@@ -366,11 +368,12 @@ class _SellCropsState extends State<SellCrops> {
                                 .microsecondsSinceEpoch
                                 .toString();
                             if (await QueryRepo().uploadFood(
-                              _titleController.text,
-                              _stockcontroller.text,
-                              _infoController.text,
-                              newUrl.toString(),
-                            )) {
+                                _titleController.text,
+                                _stockcontroller.text,
+                                _infoController.text,
+                                newUrl.toString(),
+                                data,
+                                date.toString())) {
                               // Navigator.pushNamed(context, AdminDashBoard.id);
                             }
 

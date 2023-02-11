@@ -25,11 +25,12 @@ class CustomerHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    Future.delayed(Duration.zero,(){
+    Future.delayed(Duration.zero, () {
       print(UserStore().currUser);
-      if (UserStore().currUser == 'provider') Navigator.of(context).popAndPushNamed(ProviderDashBoard.id);
-      if (UserStore().currUser == 'admin') Navigator.of(context).popAndPushNamed(AdminDashBoard.id);
+      if (UserStore().currUser == 'provider')
+        Navigator.of(context).popAndPushNamed(ProviderDashBoard.id);
+      if (UserStore().currUser == 'admin')
+        Navigator.of(context).popAndPushNamed(AdminDashBoard.id);
     });
     return Scaffold(
       key: _scaffoldState,
@@ -188,7 +189,7 @@ class CustomerHome extends StatelessWidget {
                                                         FontWeight.bold),
                                               ),
                                               Row(
-                                                children: [
+                                                children: const [
                                                   Text(
                                                     "4.5/5",
                                                     style: TextStyle(
