@@ -1,9 +1,13 @@
+import 'package:eat_easy/screens/dashboard_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Theme/app_colors.dart';
 import '../widgets/LabeledTextFormField.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const String id = '/login';
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -68,7 +72,26 @@ class _LoginScreenState extends State<LoginScreen> {
                             Radius.circular(16),
                           ),
                         ),
-                        onPressed: () async {},
+                        onPressed: () async {
+
+                          try {
+                            print('clicked');
+                            final credential = await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                            print('login successful');
+                            Navigator.popAndPushNamed(context, Dashboard.id);
+                          } on FirebaseAuthException catch (e) {
+
+                            if (e.code == 'user-not-found') {
+                              print('No user found for that email.');
+                            } else if (e.code == 'wrong-password') {
+                              print('Wrong password provided for that user.');
+                            }
+                          }
+                        },
                         child: const Text(
                           'Login',
                           style: TextStyle(

@@ -1,75 +1,16 @@
 import 'dart:async';
 
+import 'package:eat_easy/screens/login_screen.dart';
+import 'package:eat_easy/screens/signUp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Theme/app_colors.dart';
 import 'dashboard_screen.dart';
 
-class SplashScreen extends StatefulWidget {
-  static const String id = 'splashscreen';
-
-  const SplashScreen({Key? key}) : super(key: key);
-
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1000));
-    _animation = CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.bounceOut,
-        reverseCurve: Curves.bounceIn);
-    _animationController.forward();
-    super.initState();
-    Timer(
-      const Duration(seconds: 2),
-      () => Navigator.pushReplacement(
-        context,
-        PageRouteBuilder(
-          pageBuilder: (_, __, ___) => const OnboardingScreen(),
-          transitionDuration: const Duration(milliseconds: 300),
-          transitionsBuilder: (_, a, __, c) =>
-              FadeTransition(opacity: a, child: c),
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: Color(0xFFE81667),
-      body: Center(
-        child: ScaleTransition(
-          scale: _animation,
-          child: const Image(
-              image: AssetImage(
-                'assets/logo.png',
-              ),
-              height: 280,
-              width: 200),
-        ),
-      ),
-    );
-  }
-}
-
 class OnboardingScreen extends StatefulWidget {
+  static const String id = '/onboarding';
+
   const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
@@ -137,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         : Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (_, __, ___) => Dashboard(),
+                              pageBuilder: (_, __, ___) => SignUpScreen(),
                               transitionDuration:
                                   const Duration(milliseconds: 300),
                               transitionsBuilder: (_, a, __, c) =>

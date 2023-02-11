@@ -1,9 +1,13 @@
+import 'package:eat_easy/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Theme/app_colors.dart';
 import '../widgets/LabeledTextFormField.dart';
 
 class SignUpScreen extends StatefulWidget {
+  static const String id = '/signup';
+
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -75,7 +79,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Radius.circular(8),
                           ),
                         ),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          try {
+                            final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                              email: _emailController.text,
+                              password: _passwordController.text,
+                            );
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              print('The password provided is too weak.');
+                            } else if (e.code == 'email-already-in-use') {
+                              print('The account already exists for that email.');
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                          Navigator.popAndPushNamed(context, LoginScreen.id);
+                        },
                         child: Text(
                           'Sign Up',
                           style: TextStyle(

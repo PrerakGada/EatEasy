@@ -1,3 +1,5 @@
+import 'package:eat_easy/screens/login_screen.dart';
+import 'package:eat_easy/screens/signUp_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,7 @@ import 'Theme/light_theme.dart';
 import 'firebase_options.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/onboarding_screen.dart';
+import 'screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,12 +28,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: light_theme(),
       darkTheme: dark_theme(),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       initialRoute: SplashScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         Dashboard.id: (context) => Dashboard(),
+        LoginScreen.id: (context) => LoginScreen(),
+        SignUpScreen.id: (context) => SignUpScreen(),
+        OnboardingScreen.id: (context) => OnboardingScreen(),
       },
     );
   }
