@@ -1,5 +1,6 @@
 import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/screens/Provider/provider_edit.dart';
+import 'package:eat_easy/screens/Provider/upload_food_screen.dart';
 import 'package:eat_easy/screens/admin/check_applications_screen.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
@@ -136,11 +137,11 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                   children: [
                     InkWell(
                       onTap: () async {
-                        UserStore().fetchPendingProviders();
+                        // UserStore().fetchPendingProviders();
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: const CheckApplications(), //TODO check stock here, foold upload wala
+                            child: const SellCrops(),
                             type: PageTransitionType.fade,
                           ),
                         );
@@ -181,7 +182,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: ProfileScreen(),
+                            child: SellCrops(),
                             type: PageTransitionType.fade,
                           ),
                         );
