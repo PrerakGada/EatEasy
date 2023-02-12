@@ -59,8 +59,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("USERNAME",
-                              // UserStore().currUser['name'],
+                            Text(
+                              UserStore().currUser['name'],
                               style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
@@ -70,11 +70,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               height: 10,
                             ),
                             Text(
-                              "Mobile Number",
+                              UserStore().currUser['email'],
                               style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20),
+                                  fontSize: 15),
                             ),
                           ],
                         ),
