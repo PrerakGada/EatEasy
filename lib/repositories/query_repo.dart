@@ -13,7 +13,8 @@ class QueryRepo {
         for (var doc in value.docs) {
           final docData = doc.data();
           if (docData['email'] == email) {
-            // UserStore().currUser = docData['role'];
+            UserStore().currUser = docData;
+            print("This is the Correct Doc: "+ docData.toString());
             return docData;
           }
         }

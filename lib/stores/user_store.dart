@@ -50,16 +50,15 @@ class UserStore extends StateKeeper {
 
   Future fetchAllProviders() async {
     allProviders = await QueryRepo().fetchAllProviders();
-    print('======================================================'+allProviders.length.toString());
+    // print('======================================================'+allProviders.length.toString());
     notifyListeners();
   }
-
-
 
   Future getCurrUser() async {
     if (FirebaseAuth.instance.currentUser != null) {
       currUser = await QueryRepo().fetchCurrUser();
-      return currUser;
+      print('Current User: ' + currUser.toString());
+      notifyListeners();
     }
   }
 }

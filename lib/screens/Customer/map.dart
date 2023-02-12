@@ -69,10 +69,6 @@ class _EventsMapState extends State<EventsMap> {
                 itemCount: allProviders.length,
                 itemBuilder: (context, index) {
                   final currProvider = allProviders[index];
-                  final String currLang = currProvider['lang'].toString();
-                  final String currLat = currProvider['lat'].toString();
-                  print(currLat);
-                  print(currLang);
                   markers.add(
                     Marker(
                       icon: BitmapDescriptor.defaultMarkerWithHue(
@@ -86,12 +82,8 @@ class _EventsMapState extends State<EventsMap> {
                       ),
                       markerId: MarkerId('$index'),
                       position: LatLng(
-                        // currProvider['lat'],
-                        // currProvider['lang'],
-                        double.parse(currProvider['lat'].toString()),
-                        double.parse(currProvider['lang'].toString()),
-                        // double.parse('19.02149${index}3'),
-                        // double.parse('72.83821429999999'),
+                        currProvider['lat'],
+                        currProvider['lang']
                       ),
                     ),
                   );

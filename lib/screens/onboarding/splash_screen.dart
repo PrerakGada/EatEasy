@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/Customer/customer_home.dart';
+import 'package:eat_easy/screens/Customer/user_home_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/stores/user_store.dart';
@@ -32,6 +33,9 @@ class _SplashScreenState extends State<SplashScreen>
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await handleNavigation();
       await UserStore().getCurrUser();
+      await UserStore().fetchPendingProviders();
+      await UserStore().fetchPendingOrders();
+      await UserStore().fetchNearestRestros();
     });
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1000));
@@ -50,8 +54,8 @@ class _SplashScreenState extends State<SplashScreen>
               ? isAdmin
                   ? const AdminDashBoard()
                   : isProvider
-                      ? const ProviderDashBoard()
-                      : CustomerHome()
+                      ?  ProviderDashBoard()
+                      : HomeScreen()
               : const OnboardingScreen(),
           transitionDuration: const Duration(milliseconds: 300),
           transitionsBuilder: (_, a, __, c) =>

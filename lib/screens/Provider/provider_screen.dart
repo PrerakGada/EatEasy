@@ -2,7 +2,7 @@ import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/screens/Provider/provider_edit.dart';
 import 'package:eat_easy/screens/Provider/upload_food_screen.dart';
 import 'package:eat_easy/screens/admin/check_applications_screen.dart';
-import 'package:eat_easy/screens/user_home_screen.dart';
+import 'package:eat_easy/screens/Customer/user_home_screen.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';

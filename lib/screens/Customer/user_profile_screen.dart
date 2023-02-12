@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Profile'),backgroundColor: AppColors.primaryAccent, elevation: 0,),
+      appBar: AppBar(title: const Text('Profile'),backgroundColor: AppColors.primaryAccent, elevation: 0,),
       backgroundColor: AppColors.white,
       body: SafeArea(
         child: Container(
@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           width: 30,
                         ),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -67,11 +67,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 50,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 15),
+                          padding: const EdgeInsets.only(right: 15),
                           child: InkWell(
                               onTap: () {
                                 Navigator.push(
@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   MaterialPageRoute(builder: (context) => InformationPage()),
                                 );
                               },
-                              child: Icon(Icons.help)),
+                              child: const Icon(Icons.help)),
                         ),
                       ],
 
@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
                   ElevatedButton(
-                    child: Text("Edit profile"),
+                    child: const Text("Edit profile"),
                     onPressed: () {
                       Navigator.push(
                          context,
@@ -157,7 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               child: Text(
                                 "${itemList[index]}  >",
-                                style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold),
+                                style: const TextStyle(color: AppColors.black,fontWeight: FontWeight.bold),
                               ),
                             ),
                           );
