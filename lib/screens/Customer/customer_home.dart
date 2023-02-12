@@ -49,29 +49,29 @@ class _CustomerHomeState extends State<CustomerHome> {
     return Scaffold(
       key: _scaffoldState,
       drawer: SideBar(),
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: const Icon(
-            Icons.arrow_back,
-            size: 30,
-          ),
-        ),
-        title: SearchBar(
-          title: "Search for addresss",
-          height: 40,
-          width: MediaQuery.of(context).size.width * .9,
-          controller: _searchtextcontroller,
-          onChanged: () {
-            if (_searchKey != _searchtextcontroller.text) {
-              _searchKey = _searchtextcontroller.text;
-              WidgetsBinding.instance.addPostFrameCallback((_) {});
-            }
-          },
-        ),
-      ),
+      // appBar: AppBar(
+      //   leading: GestureDetector(
+      //     onTap: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //     child: const Icon(
+      //       Icons.arrow_back,
+      //       size: 30,
+      //     ),
+      //   ),
+      //   title: SearchBar(
+      //     title: "Search for addresss",
+      //     height: 40,
+      //     width: MediaQuery.of(context).size.width * .9,
+      //     controller: _searchtextcontroller,
+      //     onChanged: () {
+      //       if (_searchKey != _searchtextcontroller.text) {
+      //         _searchKey = _searchtextcontroller.text;
+      //         WidgetsBinding.instance.addPostFrameCallback((_) {});
+      //       }
+      //     },
+      //   ),
+      // ),
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         controller: _pageController,

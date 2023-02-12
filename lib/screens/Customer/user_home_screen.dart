@@ -42,6 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    UserStore().fetchPendingOrders("");
+    UserStore().fetchNearestRestros("");
+    super.initState();
+  }
+
   String checkExpiryDate(DateTime input) {
     print(DateTime.now());
     print(input);
