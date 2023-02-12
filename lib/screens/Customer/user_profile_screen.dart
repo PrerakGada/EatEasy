@@ -115,7 +115,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       primary: Colors.green,
                       onPrimary: Colors.white,
                       shadowColor: Colors.greenAccent,
-                      elevation: 3,
+                      elevation: 5,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32.0)),
                       minimumSize: Size(40, 40), //////// HERE
