@@ -6,7 +6,7 @@ import 'package:eat_easy/screens/Customer/user_profile_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
-import 'package:eat_easy/screens/user_home_screen.dart';
+import 'package:eat_easy/screens/Customer/user_home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -71,15 +71,16 @@ class MyApp extends StatelessWidget {
         darkTheme: dark_theme(),
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
-        // initialRoute: SplashScreen.id,
+
+        // initialRoute: ProviderVerification.id,
         // initialRoute: ProviderVerification.id,
         // initialRoute: ExploreMap.id,
         //initialRoute: SplashScreen.id,
         //initialRoute: AdminDashBoard.id,
-        initialRoute: ExploreMap.id,
+        // initialRoute: ExploreMap.id,
         //initialRoute: ExploreMap.id,
         // initialRoute: ProfileScreen.id,
-        // initialRoute: AdminDashBoard.id,
+        initialRoute: AdminDashBoard.id,
         // initialRoute: CustomerHome.id,
         routes: {
           SplashScreen.id: (context) => const SplashScreen(),

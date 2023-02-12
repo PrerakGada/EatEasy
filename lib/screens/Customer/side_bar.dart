@@ -18,14 +18,17 @@ class SideBar extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
+              print(UserStore().currUser);
               Navigator.popAndPushNamed(context, ProfileScreen.id);
             },
-            child: UserAccountsDrawerHeader(
-              accountName: Text(
-                UserStore().currUser['name']==null?'User':UserStore().currUser['name'],
+            child: UserAccountsDrawerHeader(accountEmail: Text(''),
+              accountName: Text('',
+                // UserStore().currUser['name'] == null
+                //     ? 'User'
+                //     : UserStore().currUser['name'],
                 textScaleFactor: 1.5,
               ),
-              accountEmail: UserStore().currUser['email']==null?'':UserStore().currUser['email'],
+              // accountEmail: Text(']'),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(

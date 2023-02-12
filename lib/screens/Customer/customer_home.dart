@@ -25,16 +25,16 @@ class CustomerHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () {
-      print(UserStore().currUser);
-      if (UserStore().currUser == 'provider')
-        Navigator.of(context).popAndPushNamed(ProviderDashBoard.id);
-      if (UserStore().currUser == 'admin')
-        Navigator.of(context).popAndPushNamed(AdminDashBoard.id);
-    });
+    // Future.delayed(Duration.zero, () {
+    //   print(UserStore().currUser);
+    //   if (UserStore().currUser == 'provider')
+    //     Navigator.of(context).popAndPushNamed(ProviderDashBoard.id);
+    //   if (UserStore().currUser == 'admin')
+    //     Navigator.of(context).popAndPushNamed(AdminDashBoard.id);
+    // });
     return Scaffold(
       key: _scaffoldState,
-      drawer: const SideBar(),
+      drawer: SideBar(),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

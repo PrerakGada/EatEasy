@@ -3,7 +3,7 @@ import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/screens/admin/admin_screen.dart';
 import 'package:eat_easy/screens/onboarding/user_signin.dart';
-import 'package:eat_easy/screens/user_home_screen.dart';
+import 'package:eat_easy/screens/Customer/user_home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
