@@ -47,6 +47,19 @@ class QueryRepo {
     return applicationsCompleted;
   }
 
+  var allProviders = [];
+
+  Future fetchAllProviders() async {
+    await _firestore.collection("providers").get().then((value) {
+      for (var doc in value.docs) {
+        // print("${doc.id} => ${doc.data()}");
+        final docData = doc.data();
+        allProviders.add(docData);
+      }
+    });
+    return allProviders;
+  }
+
   Future submitProviderVerification({
     required String name,
     required String email,
