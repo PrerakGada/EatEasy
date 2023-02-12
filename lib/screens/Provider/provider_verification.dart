@@ -5,6 +5,7 @@ import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/repositories/query_repo.dart';
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
+import 'package:eat_easy/stores/user_store.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -154,6 +155,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     hintTitle: 'Enter your Email'),
                 SizedBox(height: 24),
                 LabeledTextFormField(
+                    controller: _passwordController,
+                    title: 'Password',
+                    hintTitle: 'Enter your Password'),
+                SizedBox(height: 24),
+                LabeledTextFormField(
                     controller: _mobileController,
                     title: 'Mobile',
                     hintTitle: 'Enter your Mobile Number'),
@@ -163,11 +169,11 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     title: 'Description',
                     hintTitle: 'Enter your Description',
                     maxLines: 5),
-                SizedBox(height: 24),
-                LabeledTextFormField(
-                    controller: _addressController,
-                    title: 'Address',
-                    hintTitle: 'Enter your Address'),
+                // SizedBox(height: 24),
+                // LabeledTextFormField(
+                //     controller: _addressController,
+                //     title: 'Address',
+                //     hintTitle: 'Enter your Address'),
                 SizedBox(height: 24),
                 Container(
                   padding: EdgeInsets.only(left: 16),
@@ -189,7 +195,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                     hintTitle: 'Enter your GST no.'),
                 SizedBox(height: 14),
                 Text(
-                  "Supporting Documents:",
+                  "Supporting Documents :",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -204,7 +210,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                             color: Colors.white,
                           )
                         : MaterialButton(
-                            color: Colors.white,
+                            color: AppColors.primary,
                             onPressed: () async {
                               // if (kIsWeb) {
                               //   startweb();
@@ -222,7 +228,7 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                             color: Colors.white,
                           )
                         : MaterialButton(
-                            color: Colors.white,
+                            color: AppColors.primary,
                             onPressed: () async {
                               // if (kIsWeb) {
                               //   startweb();
@@ -265,15 +271,20 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                       var newUrlPan = await ref2.getDownloadURL();
 
                       if (await QueryRepo().submitProviderVerification(
-                          _usernameController.text,
-                          _emailController.text,
-                          _mobileController.text,
-                          _descriptionController.text,
-                          _fssai_noController.text,
-                          _gst_noController.text,
-                          newUrl.toString(),
-                          newUrlAadhar.toString(),
-                          newUrlPan.toString())) {
+                        name: _usernameController.text,
+                        email: _emailController.text,
+                        mobile: _mobileController.text,
+                        description: _descriptionController.text,
+                        FSSAI: _fssai_noController.text,
+                        GST: _gst_noController.text,
+                        imageUrl: newUrl.toString(),
+                        aadhar: newUrlAadhar.toString(),
+                        pan: newUrlPan.toString(),
+                        lat: UserStore().lat,
+                        long: UserStore().lang,
+                        address: UserStore().address,
+                        password: _passwordController.text,
+                      )) {
                         Navigator.pushNamed(context, AdminDashBoard.id);
                       }
                     },

@@ -3,6 +3,7 @@ import 'package:eat_easy/screens/onboarding/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:eat_easy/stores/user_store.dart';
 
 import 'user_profile_screen.dart';
 
@@ -21,10 +22,10 @@ class SideBar extends StatelessWidget {
             },
             child: UserAccountsDrawerHeader(
               accountName: Text(
-                'User',
+                UserStore().currUser['name'],
                 textScaleFactor: 1.5,
               ),
-              accountEmail: Text('example@gmail.com'),
+              accountEmail: UserStore().currUser['email'],
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eat_easy/repositories/auth_repo.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -6,14 +7,14 @@ final _firestore = FirebaseFirestore.instance;
 
 class QueryRepo {
   Future fetchCurrUser() async {
-    var email = FirebaseAuth.instance.currentUser?.email;
+    final email = FirebaseAuth.instance.currentUser?.email;
     if (email != null) {
       _firestore.collection('users').get().then((value) {
         for (var doc in value.docs) {
           final docData = doc.data();
           if (docData['email'] == email) {
-            UserStore().currUser = docData['role'];
-            //break;
+            // UserStore().currUser = docData['role'];
+            return docData;
           }
         }
         print(UserStore().currUser);
@@ -24,6 +25,7 @@ class QueryRepo {
   var applications = [];
   var applicationsCompleted = [];
   var orders = [];
+  var restros = [];
 
   Future fetchPendingApprovals() async {
     await _firestore.collection("providers").get().then((value) {
@@ -37,7 +39,8 @@ class QueryRepo {
   }
 
   Future fetchOrders() async {
-    await _firestore.collection("food").get().then((value) {
+    // await _firestore.collection('food').orderBy('name')
+    await _firestore.collection("food").orderBy('name').get().then((value) {
       for (var doc in value.docs) {
         // print("${doc.id} => ${doc.data()}");
         final docData = doc.data();
@@ -45,6 +48,17 @@ class QueryRepo {
       }
     });
     return orders;
+  }
+
+  Future fetchRestros() async {
+    await _firestore.collection("foodbanks").get().then((value) {
+      for (var doc in value.docs) {
+        // print("${doc.id} => ${doc.data()}");
+        final docData = doc.data();
+        restros.add(docData);
+      }
+    });
+    return restros;
   }
 
   Future fetchCompletedApprovals() async {
@@ -58,16 +72,22 @@ class QueryRepo {
     return applicationsCompleted;
   }
 
-  Future submitProviderVerification(
-      String name,
-      String email,
-      String mobile,
-      String description,
-      String FSSAI,
-      String GST,
-      String imageUrl,
-      String aadhar,
-      String pan) async {
+  Future submitProviderVerification({
+    required String name,
+    required String email,
+    required String mobile,
+    required String description,
+    required String FSSAI,
+    required String GST,
+    required String imageUrl,
+    required String aadhar,
+    required String pan,
+    required double lat,
+    required double long,
+    required String address,
+    required String password,
+  }) async {
+    await AuthRepo().signup(name, email, password, 'provider');
     try {
       _firestore.collection('providers').doc('$name:$email').set({
         'name': name,
@@ -79,7 +99,10 @@ class QueryRepo {
         'approval': false,
         'imageUrl': imageUrl,
         'panUrl': pan,
-        'aadharUrl': aadhar
+        'aadharUrl': aadhar,
+        'lat': lat,
+        'lang': long,
+        'address': address,
       });
       return true;
     } catch (e) {

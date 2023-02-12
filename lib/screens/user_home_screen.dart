@@ -1,4 +1,5 @@
 import 'package:eat_easy/Theme/typography.dart';
+import 'package:eat_easy/screens/Provider/provider_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -520,7 +521,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 width: 12,
                                                                 height: 12,
                                                               ),
-                                                              SizedBox(
+                                                              const SizedBox(
                                                                 width: 2,
                                                               ),
                                                               Text(
@@ -552,7 +553,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             )),
                         const Padding(
-                          padding: EdgeInsets.only(left: 20, top: 20),
+                          padding: EdgeInsets.only(left: 20, top: 15),
                           child: Text(
                             "Nearest Food Banks",
                             style: TextStyle(
@@ -565,30 +566,48 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 10,
                         ),
                         SizedBox(
-                          height: 180,
-                          width: double.infinity,
-                          child: ListView.builder(
-                            itemCount: 3,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(left: 16),
-                                child: Container(
-                                  width: 130,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey.withOpacity(0.4),
-                                      borderRadius: BorderRadius.circular(15),
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJrCbpnfVfKl9o43TwqQmxrGm4-r2IPGdEQQ&usqp=CAU"),
-                                          fit: BoxFit.fill)),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
+                            height: 180,
+                            width: double.infinity,
+                            child: Consumer<UserStore>(
+                              builder: (_, userStore, __) {
+                                return ListView.builder(
+                                  itemCount: userStore.restros.length,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) {
+                                    final currrestro = userStore.restros[index];
+                                    return Padding(
+                                      padding: const EdgeInsets.only(left: 16),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              child: KitchenView(
+                                                  kitchendetails: currrestro),
+                                              type: PageTransitionType.fade,
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 130,
+                                          height: 120,
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  Colors.grey.withOpacity(0.4),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      currrestro["imageUrl"]),
+                                                  fit: BoxFit.fill)),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            )),
                         // Padding(
                         //   padding: const EdgeInsets.only(
                         //       left: 15, right: 15, top: 10),

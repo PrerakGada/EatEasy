@@ -2,8 +2,10 @@ import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:eat_easy/stores/user_store.dart';
 
 import 'edit_profile.dart';
+import 'information.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = '/profile';
@@ -52,7 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Siddesh Shetty",
+                              UserStore().currUser['name'],
                               style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold,fontSize: 25),
                             ),
                             SizedBox(
@@ -72,7 +74,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: EdgeInsets.only(right: 15),
                           child: InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                                Navigator.push(
+                                    context,
+                                  MaterialPageRoute(builder: (context) => InformationPage()),
+                                );
                               },
                               child: Icon(Icons.help)),
                         ),

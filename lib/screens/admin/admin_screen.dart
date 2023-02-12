@@ -37,11 +37,11 @@ class _AdminDashBoardState extends State<AdminDashBoard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'SATURDAY, 11 FEB',
+                        'SUNDAY, 12 FEB',
                         style: TextStyle(fontSize: 11, color: AppColors.black),
                       ),
                       Text(
-                        'Good Morning, Siddesh',
+                        'Good Morning, ${UserStore().currUser['name']}',
                         style: TextStyle(fontSize: 22, color: AppColors.black),
                       )
                     ],

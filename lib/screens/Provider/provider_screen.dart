@@ -1,4 +1,5 @@
 import 'package:eat_easy/Theme/app_colors.dart';
+import 'package:eat_easy/screens/Provider/provider_edit.dart';
 import 'package:eat_easy/screens/Provider/upload_food_screen.dart';
 import 'package:eat_easy/screens/admin/check_applications_screen.dart';
 import 'package:eat_easy/screens/user_home_screen.dart';
@@ -38,7 +39,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'SATURDAY, 11 FEB',
+                        "12 February 2023",
                         style: TextStyle(fontSize: 11, color: AppColors.black),
                       ),
                       Text(
@@ -48,11 +49,20 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                     ],
                   ),
                   Spacer(),
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://www.nicepng.com/png/detail/841-8415635_851-x-706-4-free-shop-vector.png'),
-                    maxRadius: 15,
-                  )
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProviderEdit(),
+                          ));
+                    },
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                          'https://www.nicepng.com/png/detail/841-8415635_851-x-706-4-free-shop-vector.png'),
+                      maxRadius: 15,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -149,7 +159,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Image.network(
-                                "https://as1.ftcdn.net/v2/jpg/03/93/16/02/1000_F_393160279_YiExhcGrtAeiFSBqacVuEDRVUT00wFmK.jpg",
+                                "https://images.vexels.com/media/users/3/143047/isolated/preview/b0c9678466af11dd45a62163bdcf03fe-fast-food-hamburger-flat-icon.png",
                                 width: 50,
                                 height: 50,
                               ),
@@ -170,6 +180,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                     InkWell(
                       onTap: () {
                         UserStore().fetchPendingOrders();
+                        UserStore().fetchNearestRestros();
                         Navigator.push(
                           context,
                           PageTransition(
