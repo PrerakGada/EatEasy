@@ -1,9 +1,11 @@
 import 'package:eat_easy/screens/Customer/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../../stores/user_store.dart';
+import '../Provider/provider_view_screen.dart';
 
 class EventsMap extends StatefulWidget {
   const EventsMap({
@@ -79,7 +81,16 @@ class _EventsMapState extends State<EventsMap> {
                           BitmapDescriptor.hueMagenta),
                       infoWindow: InfoWindow(
                         onTap: () {
-                          Navigator.pushNamed(context, ProfileScreen.id);
+                          // print(currProvider);
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              child: KitchenView(
+                                kitchendetails: currProvider,
+                              ),
+                              type: PageTransitionType.fade,
+                            ),
+                          );
                         },
                         title: currProvider['name'],
                         snippet: currProvider['description'],
