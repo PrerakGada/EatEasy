@@ -54,7 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              UserStore().currUser['name'],
+                              'Prerak',
                               style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold,fontSize: 25),
                             ),
                             SizedBox(
