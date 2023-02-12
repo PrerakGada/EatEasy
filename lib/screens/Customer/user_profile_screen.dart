@@ -59,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('',
+                            Text("USERNAME",
                               // UserStore().currUser['name'],
                               style: TextStyle(
                                   color: AppColors.black,
@@ -99,15 +99,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     width: 10,
                   ),
+                  // ElevatedButton(
+                  //   child: const Text("Edit profile"),
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => EditProfilePage()),
+                  //     );
+                  //   },
+                  //
+                  // ),
                   ElevatedButton(
-                    child: const Text("Edit profile"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      onPrimary: Colors.white,
+                      shadowColor: Colors.greenAccent,
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0)),
+                      minimumSize: Size(40, 40), //////// HERE
+                    ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EditProfilePage()),
-                      );
+                    Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => EditProfilePage()),
+                                        );
                     },
+                    child: Text("Edit Profile"),
                   ),
                   const SizedBox(
                     height: 100,
