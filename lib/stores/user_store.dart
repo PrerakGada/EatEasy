@@ -1,6 +1,7 @@
 import 'package:eat_easy/repositories/query_repo.dart';
 import 'package:eat_easy/stores/state_keeper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class UserStore extends StateKeeper {
   UserStore._();
@@ -9,7 +10,7 @@ class UserStore extends StateKeeper {
 
   factory UserStore() => _instance;
 
-  List providers = [];
+  List allProviders = [];
   List pendingProviders = [];
   List completedProviders = [];
 
@@ -30,6 +31,16 @@ class UserStore extends StateKeeper {
     print(completedProviders);
     notifyListeners();
   }
+
+  late List<Marker> allMarkers = [];
+
+  Future fetchAllProviders() async {
+    allProviders = await QueryRepo().fetchAllProviders();
+    print('======================================================'+allProviders.length.toString());
+    notifyListeners();
+  }
+
+
 
   Future getCurrUser() async {
     if (FirebaseAuth.instance.currentUser != null) {
