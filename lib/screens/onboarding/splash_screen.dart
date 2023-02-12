@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen>
                   ? const AdminDashBoard()
                   : isProvider
                       ? ProviderDashBoard()
-                      : HomeScreen()
+                      : CustomerHome()
               : const OnboardingScreen(),
           transitionDuration: const Duration(milliseconds: 300),
           transitionsBuilder: (_, a, __, c) =>
@@ -67,12 +67,15 @@ class _SplashScreenState extends State<SplashScreen>
 
   handleNavigation() async {
     if (FirebaseAuth.instance.currentUser != null) {
-      print('vsanvjkasnv kjasf kjfs vjkdfs vjf');
       print(UserStore().currUser);
       print(await UserStore().getCurrUser());
       isLoggedIn = true;
-      if (UserStore().currUser == 'admin') isAdmin = true;
-      if (UserStore().currUser == 'provider') isProvider = true;
+      if (UserStore().currUser['role'] == 'admin') isAdmin = true;
+      print(isAdmin);
+      if (UserStore().currUser['role'] == 'provider') isProvider = true;
+      print(isProvider);
+      print("-------------------------------------------->" +
+          UserStore().currUser['role'].toString());
     } else {
       print('NO LOGINS');
       isLoggedIn = false;

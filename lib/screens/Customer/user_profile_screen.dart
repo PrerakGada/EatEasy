@@ -9,6 +9,7 @@ import 'information.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = '/profile';
+
   const ProfileScreen({super.key});
 
   @override
@@ -23,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     'Get Rent Agreement',
     'Remove Post'
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,9 +58,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
-                              'Prerak',
+                              UserStore().currUser['name'],
                               style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
@@ -68,11 +70,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               height: 10,
                             ),
                             Text(
-                              "Mobile Number",
+                              UserStore().currUser['email'],
                               style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20),
+                                  fontSize: 15),
                             ),
                           ],
                         ),
@@ -89,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       builder: (context) => InformationPage()),
                                 );
                               },
-                              child: const Icon(Icons.help)),
+                              child: const Icon(Icons.settings)),
                         ),
                       ],
                     ),
@@ -97,8 +99,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     width: 10,
                   ),
+                  // ElevatedButton(
+                  //   child: const Text("Edit profile"),
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => EditProfilePage()),
+                  //     );
+                  //   },
+                  //
+                  // ),
                   ElevatedButton(
-                    child: const Text("Edit profile"),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      onPrimary: Colors.white,
+                      shadowColor: Colors.greenAccent,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0)),
+                      minimumSize: Size(40, 40), //////// HERE
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -106,6 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             builder: (context) => EditProfilePage()),
                       );
                     },
+                    child: Text("Edit Profile"),
                   ),
                   const SizedBox(
                     height: 100,

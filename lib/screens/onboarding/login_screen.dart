@@ -2,7 +2,8 @@ import 'package:eat_easy/screens/Customer/customer_home.dart';
 import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/screens/admin/admin_screen.dart';
-import 'package:eat_easy/screens/onboarding/user_signin.dart';
+import 'package:eat_easy/screens/onboarding/splash_screen.dart';
+import 'package:eat_easy/screens/onboarding/register_screen.dart';
 import 'package:eat_easy/screens/Customer/user_home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (await AuthRepo().login(_emailController.text,
                                 _passwordController.text)) {
                             Navigator.popAndPushNamed(
-                                context, ProviderDashBoard.id);
+                                context, SplashScreen.id);
                             } else {
                               print('error');
                             }
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: TextSpan(
                             text: 'New here?',
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 20,
                               color: AppColors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               TextSpan(
                                   text: ' Sign Up!',
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 20,
                                     color: Color(0xff06e357),
                                     fontWeight: FontWeight.bold,
                                   ),

@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:eat_easy/screens/Customer/customer_home.dart';
 import 'package:eat_easy/screens/admin/admin_screen.dart';
-import 'package:eat_easy/screens/onboarding/user_signin.dart';
+import 'package:eat_easy/screens/onboarding/login_screen.dart';
+import 'package:eat_easy/screens/onboarding/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -96,7 +97,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               context,
                               PageRouteBuilder(
                                 // pageBuilder: (_, __, ___) => AdminDashBoard(),
-                                pageBuilder: (_, __, ___) => SignUpPage(),
+                                pageBuilder: (_, __, ___) => LoginScreen(),
                                 transitionDuration:
                                     const Duration(milliseconds: 300),
                                 transitionsBuilder: (_, a, __, c) =>

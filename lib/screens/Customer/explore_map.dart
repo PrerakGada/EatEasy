@@ -26,10 +26,10 @@ class _ExploreMapState extends State<ExploreMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text('Explore'),
-        backgroundColor: AppColors.primary,
+        title: Text('Explore Providers'),
+        backgroundColor: AppColors.primaryAccent,
       ),
       body: Container(
         width: double.infinity,
