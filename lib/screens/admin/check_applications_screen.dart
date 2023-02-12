@@ -314,12 +314,18 @@ class _CheckApplicationsState extends State<CheckApplications> {
                                       color: AppColors.black,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
-                                  currApplication['address'],
-                                  style: TextStyle(
-                                      color: AppColors.black.withOpacity(0.4),
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold),
+                                SizedBox(
+                                  width: 180.0,
+                                  child: Text(
+                                    currApplication['address'],
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    style: TextStyle(
+                                        color: AppColors.black.withOpacity(0.4),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 5,
