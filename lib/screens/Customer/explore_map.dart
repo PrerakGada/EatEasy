@@ -13,16 +13,15 @@ class ExploreMap extends StatefulWidget {
 }
 
 class _ExploreMapState extends State<ExploreMap> {
-
-
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await  UserStore().fetchAllProviders();
+      await UserStore().fetchAllProviders();
     });
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

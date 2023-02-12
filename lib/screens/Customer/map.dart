@@ -1,3 +1,4 @@
+import 'package:eat_easy/models/User.dart';
 import 'package:eat_easy/screens/Customer/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -17,11 +18,13 @@ class EventsMap extends StatefulWidget {
 }
 
 class _EventsMapState extends State<EventsMap> {
+  List prod = [];
   // DataService? d1;
   GoogleMapController? mapController;
 
   void initstate() {
     super.initState();
+    // UserStore().fetchAllProviders();
 
     // ignore: prefer_collection_literals
     markers = Set.from([]);
@@ -71,13 +74,20 @@ class _EventsMapState extends State<EventsMap> {
                 itemCount: allProviders.length,
                 itemBuilder: (context, index) {
                   final currProvider = allProviders[index];
+
+                  // final prod = currProvider["products"];
+                  // setState(() {});
+                  // print(currProvider);
                   markers.add(
                     Marker(
                       icon: BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueMagenta),
+                          (currProvider["isVeg"])
+                              ? BitmapDescriptor.hueGreen
+                              : BitmapDescriptor.hueRed),
                       infoWindow: InfoWindow(
-                        onTap: () {
-                          // print(currProvider);
+                        onTap: () async {
+                          // print(hi);
+                          await UserStore().allProviders;
                           Navigator.push(
                             context,
                             PageTransition(
