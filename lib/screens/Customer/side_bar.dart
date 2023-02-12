@@ -22,10 +22,10 @@ class SideBar extends StatelessWidget {
             },
             child: UserAccountsDrawerHeader(
               accountName: Text(
-                UserStore().currUser['name'],
+                UserStore().currUser['name']==null?'User':UserStore().currUser['name'],
                 textScaleFactor: 1.5,
               ),
-              accountEmail: UserStore().currUser['email'],
+              accountEmail: UserStore().currUser['email']==null?'':UserStore().currUser['email'],
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(
