@@ -9,6 +9,7 @@ import 'package:eat_easy/stores/user_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../Provider/provider_home_page.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -54,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen>
               ? isAdmin
                   ? const AdminDashBoard()
                   : isProvider
-                      ? ProviderDashBoard()
+                      ? ProviderHomeScreen()
                       : CustomerHome()
               : const OnboardingScreen(),
           transitionDuration: const Duration(milliseconds: 300),

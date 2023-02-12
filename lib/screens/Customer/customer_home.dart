@@ -20,6 +20,8 @@ import '../../Theme/app_colors.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:popup_card/popup_card.dart';
 
+import '../Provider/provider_home_page.dart';
+
 import '../../widgets/search_bar.dart';
 
 class CustomerHome extends StatefulWidget {
@@ -42,7 +44,7 @@ class _CustomerHomeState extends State<CustomerHome> {
     Future.delayed(Duration.zero, () {
       print(UserStore().currUser['role']);
       if (UserStore().currUser['role'] == 'provider')
-        Navigator.of(context).popAndPushNamed(ProviderDashBoard.id);
+        Navigator.of(context).popAndPushNamed(ProviderHomeScreen.id);
       if (UserStore().currUser['role'] == 'admin')
         Navigator.of(context).popAndPushNamed(AdminDashBoard.id);
     });

@@ -5,8 +5,10 @@ import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/repositories/query_repo.dart';
 import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
+import 'package:eat_easy/screens/onboarding/splash_screen.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -285,7 +287,8 @@ class _ProviderVerificationState extends State<ProviderVerification> {
                         address: UserStore().address,
                         password: _passwordController.text,
                       )) {
-                        Navigator.pushNamed(context, AdminDashBoard.id);
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.popAndPushNamed(context, SplashScreen.id);
                       }
                     },
                     style: ElevatedButton.styleFrom(

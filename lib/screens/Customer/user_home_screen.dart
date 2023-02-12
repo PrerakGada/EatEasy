@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../Theme/app_colors.dart';
 import '../../stores/user_store.dart';
@@ -11,6 +12,7 @@ import '../../widgets/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
   static const String id = 'home-screen';
 
   @override
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String status = "Approved";
   final TextEditingController _searchtextcontroller = TextEditingController();
   var _searchKey = '';
+
   String convertToAgo(DateTime input) {
     print(DateTime.now());
     print(input);
@@ -81,9 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 20),
                       Container(
                         width: 150,
                         height: 100,
@@ -98,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             currorder["name"],
@@ -153,6 +155,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                             : Colors.red))
                               ],
                             ),
+                          ),
+                          ElevatedButton(
+                            onPressed: () async {
+                              final uri = Uri.parse("https://rzp.io/i/hqzWYNj");
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri);
+                              } else {
+                                // can't launch url
+                              }
+                            },
+                            child: Text('Buy ₹50'),
                           ),
                           // const SizedBox(
                           //   height: 5,
@@ -233,54 +246,54 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         height: 100,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  minimumSize: Size(
-                                      MediaQuery.of(context).size.width * .4,
-                                      50),
-                                  maximumSize: Size(
-                                      MediaQuery.of(context).size.width * .5,
-                                      50),
-                                  backgroundColor: Colors.red),
-                              child: const Text(
-                                "Close",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              onPressed: () async {
-                                // if (await QueryRepo().fetchPendingApprovals()) {
-                                //   Navigator.of(context).pop();
-                                // }
-                              },
-                            ),
-                            const Spacer(),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  minimumSize: Size(
-                                      MediaQuery.of(context).size.width * .4,
-                                      50),
-                                  maximumSize: Size(
-                                      MediaQuery.of(context).size.width * .5,
-                                      50),
-                                  backgroundColor: Colors.green),
-                              child: const Text(
-                                "Order",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              onPressed: () async {
-                                // if (await QueryRepo().approveProvider(
-                                //     '${currApplication['name']}:${currApplication['email']}')) {
-                                //   UserStore().fetchPendingProviders();
-                                //   Navigator.of(context).pop();
-                                // }
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Row(
+                      //     children: [
+                      //       ElevatedButton(
+                      //         style: ElevatedButton.styleFrom(
+                      //             minimumSize: Size(
+                      //                 MediaQuery.of(context).size.width * .4,
+                      //                 50),
+                      //             maximumSize: Size(
+                      //                 MediaQuery.of(context).size.width * .5,
+                      //                 50),
+                      //             backgroundColor: Colors.red),
+                      //         child: const Text(
+                      //           "Close",
+                      //           style: TextStyle(color: Colors.black),
+                      //         ),
+                      //         onPressed: () async {
+                      //           // if (await QueryRepo().fetchPendingApprovals()) {
+                      //           //   Navigator.of(context).pop();
+                      //           // }
+                      //         },
+                      //       ),
+                      //       const Spacer(),
+                      //       ElevatedButton(
+                      //         style: ElevatedButton.styleFrom(
+                      //             minimumSize: Size(
+                      //                 MediaQuery.of(context).size.width * .4,
+                      //                 50),
+                      //             maximumSize: Size(
+                      //                 MediaQuery.of(context).size.width * .5,
+                      //                 50),
+                      //             backgroundColor: Colors.green),
+                      //         child: const Text(
+                      //           "Order",
+                      //           style: TextStyle(color: Colors.black),
+                      //         ),
+                      //         onPressed: () async {
+                      //           // if (await QueryRepo().approveProvider(
+                      //           //     '${currApplication['name']}:${currApplication['email']}')) {
+                      //           //   UserStore().fetchPendingProviders();
+                      //           //   Navigator.of(context).pop();
+                      //           // }
+                      //         },
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -392,7 +405,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 40,
                     width: double.infinity,
                     controller: _searchtextcontroller,
-                    title: "Search for a location",
+                    title: "Search for a product",
                     onChanged: () {
                       if (_searchKey != _searchtextcontroller.text) {
                         _searchKey = _searchtextcontroller.text;
@@ -595,150 +608,139 @@ class _HomeScreenState extends State<HomeScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 16, bottom: 10, right: 5),
                                       child: InkWell(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                child: KitchenView(
-                                                    kitchendetails: currrestro),
-                                                type: PageTransitionType.fade,
-                                              ),
-                                            );
-                                          },
-                                          child: Stack(
-                                            children: [
-                                              Container(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              child: KitchenView(
+                                                  kitchendetails: currrestro),
+                                              type: PageTransitionType.fade,
+                                            ),
+                                          );
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              width: 130,
+                                              // height: 120,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.4),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          currrestro[
+                                                              "imageUrl"]),
+                                                      fit: BoxFit.fill)),
+                                            ),
+                                            Positioned(
+                                              bottom: 0,
+                                              child: Container(
                                                 width: 130,
-                                                // height: 120,
+                                                height: 75,
                                                 decoration: BoxDecoration(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.4),
+                                                    color: Colors.white,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.grey
+                                                            .withOpacity(0.3),
+                                                        offset: const Offset(
+                                                            5.0, 5.0),
+                                                        blurRadius: 5,
+                                                        spreadRadius: 2.0,
+                                                      ), //BoxShadow
+                                                    ],
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            15),
-                                                    image: DecorationImage(
-                                                        image: NetworkImage(
-                                                            currrestro[
-                                                                "imageUrl"]),
-                                                        fit: BoxFit.fill)),
-                                              ),
-                                              Positioned(
-                                                  bottom: 0,
-                                                  child: Container(
-                                                      width: 130,
-                                                      height: 75,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.white,
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              color: Colors.grey
-                                                                  .withOpacity(
-                                                                      0.3),
-                                                              offset:
-                                                                  const Offset(
-                                                                      5.0, 5.0),
-                                                              blurRadius: 5,
-                                                              spreadRadius: 2.0,
-                                                            ), //BoxShadow
-                                                          ],
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                      .only(
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          15),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          15))),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(8.0),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            // Text(
-                                                            //   currrestro[
-                                                            //       "name"],
-                                                            //   style: const TextStyle(
-                                                            //       fontWeight:
-                                                            //           FontWeight
-                                                            //               .bold,
-                                                            //       fontSize: 16),
-                                                            // ),
-                                                            Row(
-                                                              children: [
-                                                                currrestro["status"] ==
-                                                                        "veg"
-                                                                    ? Image
-                                                                        .network(
-                                                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM9yQPIlvAwNgYiGp4wMXXdKekDVDZklBd8ycURB2v&s",
-                                                                        width:
-                                                                            12,
-                                                                        height:
-                                                                            12,
-                                                                      )
-                                                                    : Image
-                                                                        .network(
-                                                                        "https://ih1.redbubble.net/image.756552536.4596/st,small,507x507-pad,600x600,f8f8f8.u2.jpg",
-                                                                        width:
-                                                                            12,
-                                                                        height:
-                                                                            12,
-                                                                      ),
-                                                                const SizedBox(
-                                                                  width: 2,
-                                                                ),
-                                                                Text(
-                                                                  currrestro[
-                                                                      "name"],
-                                                                  style: const TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      color: Colors
-                                                                          .green),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            // SizedBox(
-                                                            //   height: 5,
-                                                            // ),
-                                                            Text(
-                                                              "${currrestro["distance"].toString()} ${currrestro["unit"].toString()}",
-                                                              style:
-                                                                  const TextStyle(
-                                                                      fontSize:
-                                                                          12),
-                                                            ),
-                                                            Row(
-                                                              children: [
-                                                                Image.asset(
-                                                                  "assets/star.png",
+                                                        const BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    15),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    15))),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      // Text(
+                                                      //   currrestro[
+                                                      //       "name"],
+                                                      //   style: const TextStyle(
+                                                      //       fontWeight:
+                                                      //           FontWeight
+                                                      //               .bold,
+                                                      //       fontSize: 16),
+                                                      // ),
+                                                      Row(
+                                                        children: [
+                                                          currrestro["status"] ==
+                                                                  "veg"
+                                                              ? Image.network(
+                                                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM9yQPIlvAwNgYiGp4wMXXdKekDVDZklBd8ycURB2v&s",
+                                                                  width: 12,
+                                                                  height: 12,
+                                                                )
+                                                              : Image.network(
+                                                                  "https://ih1.redbubble.net/image.756552536.4596/st,small,507x507-pad,600x600,f8f8f8.u2.jpg",
                                                                   width: 12,
                                                                   height: 12,
                                                                 ),
-                                                                const SizedBox(
-                                                                  width: 2,
-                                                                ),
-                                                                const Text(
-                                                                  "4.5",
-                                                                  style: TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      color: Colors
-                                                                          .green),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      )))
-                                            ],
-                                          )),
+                                                          const SizedBox(
+                                                            width: 2,
+                                                          ),
+                                                          Text(
+                                                            currrestro["name"],
+                                                            style: const TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color: Colors
+                                                                    .green),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      // SizedBox(
+                                                      //   height: 5,
+                                                      // ),
+                                                      Text(
+                                                        "${currrestro["distance"].toString()} ${currrestro["unit"].toString()}",
+                                                        style: const TextStyle(
+                                                            fontSize: 12),
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Image.asset(
+                                                            "assets/star.png",
+                                                            width: 12,
+                                                            height: 12,
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 2,
+                                                          ),
+                                                          const Text(
+                                                            "4.5",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color: Colors
+                                                                    .green),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     );
                                   },
                                 );

@@ -55,7 +55,7 @@ dependencies:
   smooth_star_rating_null_safety: ^1.0.4+2
   firebase_messaging: ^14.2.2
   loading_animation_widget: ^1.2.0+4
-
+  url_launcher: ^6.1.7
 
   google_maps_flutter: ^2.2.1
   flutter_google_places_hoc081098: ^1.1.0

@@ -7,7 +7,7 @@ import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
-
+import 'package:intl/intl.dart';
 import '../Customer/user_profile_screen.dart';
 
 class ProviderDashBoard extends StatefulWidget {
@@ -39,7 +39,9 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "12 February 2023",
+                        DateFormat('dd MMMM, yyyy')
+                            .format(DateTime.now())
+                            .toString(),
                         style: TextStyle(fontSize: 11, color: AppColors.black),
                       ),
                       Text(
@@ -48,16 +50,16 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                       )
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ProviderEdit(),
+                            builder: (context) => const ProviderEdit(),
                           ));
                     },
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       backgroundImage: NetworkImage(
                           'https://www.nicepng.com/png/detail/841-8415635_851-x-706-4-free-shop-vector.png'),
                       maxRadius: 15,
@@ -68,7 +70,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     height: 35,
@@ -77,7 +79,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                       color: Colors.grey[300],
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Padding(
+                    child: const Padding(
                       padding: EdgeInsets.only(left: 8.0),
                       child: Row(
                         children: [
@@ -101,19 +103,19 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
-                          ));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => const LoginScreen(),
+                      //     ));
                     },
                     child: Container(
                       height: 35,
                       width: 35,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.green, width: 3),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(color: Colors.green, width: 3),
+                      //   borderRadius: BorderRadius.circular(10),
+                      // ),
                       child: const Icon(Icons.logout),
                     ),
                   ),
@@ -167,7 +169,7 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                                 height: 10,
                               ),
                               const Text(
-                                "Food",
+                                "Upload Food",
                                 style: TextStyle(
                                     color: AppColors.black,
                                     fontWeight: FontWeight.bold),
@@ -181,18 +183,18 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                       onTap: () {
                         UserStore().fetchPendingOrders("");
                         UserStore().fetchNearestRestros("");
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            child: HomeScreen(),
-                            type: PageTransitionType.fade,
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     child: const HomeScreen(),
+                        //     type: PageTransitionType.fade,
+                        //   ),
+                        // );
                       },
                       child: Container(
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 235, 235, 235),
+                            color: const Color.fromARGB(255, 235, 235, 235),
                             borderRadius: BorderRadius.circular(20)),
                         width: 150,
                         height: 150,

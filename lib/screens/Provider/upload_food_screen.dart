@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -375,7 +376,7 @@ class _UploadFoodState extends State<UploadFood> {
                                 data,
                                 date.toString(),
                                 "Anand Bhavan")) {
-                              // Navigator.pushNamed(context, AdminDashBoard.id);
+                              Navigator.pushNamed(context, ProviderDashBoard.id);
                             }
 
                             // db.child(id).set({

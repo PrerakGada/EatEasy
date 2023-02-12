@@ -1,5 +1,6 @@
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
+import 'package:eat_easy/screens/onboarding/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:eat_easy/repositories/auth_repo.dart';
 import 'package:eat_easy/widgets/LabeledTextFormField.dart';
@@ -108,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         emailController.text,
                         passwordController.text,
                         'customer')) {
-                      Navigator.popAndPushNamed(context, LoginScreen.id);
+                      Navigator.popAndPushNamed(context, SplashScreen.id);
                     }
                     //   try {
                     //     final credential = await FirebaseAuth.instance

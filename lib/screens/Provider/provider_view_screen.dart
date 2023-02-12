@@ -1,5 +1,6 @@
 import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/custom_loading.dart';
 import '../../widgets/image_placeHolder.dart';
@@ -164,7 +165,7 @@ class _KitchenViewState extends State<KitchenView> {
                                           style: TextStyle(
                                               color: AppColors.black)),
                                       TextSpan(
-                                          text: products[index]["price"],
+                                          text: '₹50',
                                           style: TextStyle())
                                     ],
                                   ),
@@ -172,6 +173,17 @@ class _KitchenViewState extends State<KitchenView> {
 
                                 SizedBox(
                                   height: height * 0.015,
+                                ),
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    final uri = Uri.parse("https://rzp.io/i/hqzWYNj");
+                                    if (await canLaunchUrl(uri)) {
+                                      await launchUrl(uri);
+                                    } else {
+                                      // can't launch url
+                                    }
+                                  },
+                                  child: Text('Buy ₹50'),
                                 ),
                               ],
                             ),

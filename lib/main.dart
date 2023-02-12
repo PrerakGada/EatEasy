@@ -3,6 +3,7 @@ import 'package:eat_easy/screens/Admin/admin_screen.dart';
 import 'package:eat_easy/screens/Customer/customer_home.dart';
 import 'package:eat_easy/screens/Customer/explore_map.dart';
 import 'package:eat_easy/screens/Customer/user_profile_screen.dart';
+import 'package:eat_easy/screens/Provider/provider_home_page.dart';
 import 'package:eat_easy/screens/Provider/provider_screen.dart';
 import 'package:eat_easy/screens/onboarding/login_screen.dart';
 import 'package:eat_easy/screens/Provider/provider_verification.dart';
@@ -77,12 +78,6 @@ class MyApp extends StatelessWidget {
         // initialRoute: ExploreMap.id,
         initialRoute: SplashScreen.id,
         //initialRoute: AdminDashBoard.id,
-        //initialRoute: ExploreMap.id,
-        // initialRoute: ExploreMap.id,
-        //initialRoute: ExploreMap.id,
-        // initialRoute: ProfileScreen.id,
-
-        // initialRoute: CustomerHome.id,
         routes: {
           SplashScreen.id: (context) => const SplashScreen(),
           LoginScreen.id: (context) => LoginScreen(),
@@ -95,6 +90,7 @@ class MyApp extends StatelessWidget {
           ProviderDashBoard.id: (context) => ProviderDashBoard(),
           ProfileScreen.id: (context) => ProfileScreen(),
           ExploreMap.id: (context) => ExploreMap(),
+          ProviderHomeScreen.id: (context) => ProviderHomeScreen(),
         },
       ),
     );

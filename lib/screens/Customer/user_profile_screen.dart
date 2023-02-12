@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             // decoration: BoxDecoration(color: Colors.white),
             width: double.infinity,
             child: Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -60,7 +60,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              UserStore().currUser['name'],
+                              "USERNAME",
+                              // UserStore().currUser['name'],
                               style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
@@ -70,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               height: 10,
                             ),
                             Text(
-                              UserStore().currUser['email'],
+                              "Mobile Number",
                               style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
@@ -115,10 +116,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       primary: Colors.green,
                       onPrimary: Colors.white,
                       shadowColor: Colors.greenAccent,
-                      elevation: 5,
+                      elevation: 3,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(32.0)),
-                      minimumSize: Size(40, 40), //////// HERE
+                      minimumSize: Size(MediaQuery.of(context).size.width *0.9 ,40), //////// HERE
                     ),
                     onPressed: () {
                       Navigator.push(
