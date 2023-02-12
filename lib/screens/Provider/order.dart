@@ -14,7 +14,7 @@ class _OrderFoodState extends State<OrderFood> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.primaryAccent,
         body: Column(
         children: [
           Expanded(child: GridView.count(

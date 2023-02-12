@@ -1,3 +1,4 @@
+import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:eat_easy/screens/Customer/map.dart';
 import 'package:eat_easy/stores/user_store.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,10 @@ class _ExploreMapState extends State<ExploreMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary,
       appBar: AppBar(
         title: Text('Explore'),
+        backgroundColor: AppColors.primary,
       ),
       body: Container(
         width: double.infinity,
