@@ -9,6 +9,7 @@ import 'information.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const String id = '/profile';
+
   const ProfileScreen({super.key});
 
   @override
@@ -23,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     'Get Rent Agreement',
     'Remove Post'
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,8 +59,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Prerak',
+                            Text('',
+                              // UserStore().currUser['name'],
                               style: TextStyle(
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
@@ -89,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       builder: (context) => InformationPage()),
                                 );
                               },
-                              child: const Icon(Icons.help)),
+                              child: const Icon(Icons.settings)),
                         ),
                       ],
                     ),

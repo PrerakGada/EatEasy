@@ -18,7 +18,7 @@ import 'firebase_options.dart';
 import 'screens/onboarding/onboarding_screen.dart';
 import 'screens/onboarding/splash_screen.dart';
 import 'stores/user_store.dart';
-import 'screens/onboarding/user_signin.dart';
+import 'screens/onboarding/register_screen.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -75,12 +75,12 @@ class MyApp extends StatelessWidget {
         // initialRoute: ProviderVerification.id,
         // initialRoute: ProviderVerification.id,
         // initialRoute: ExploreMap.id,
-        //initialRoute: SplashScreen.id,
+        initialRoute: SplashScreen.id,
         //initialRoute: AdminDashBoard.id,
         // initialRoute: ExploreMap.id,
         //initialRoute: ExploreMap.id,
         // initialRoute: ProfileScreen.id,
-        initialRoute: AdminDashBoard.id,
+        // initialRoute: AdminDashBoard.id,
         // initialRoute: CustomerHome.id,
         routes: {
           SplashScreen.id: (context) => const SplashScreen(),
