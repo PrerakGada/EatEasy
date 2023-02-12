@@ -26,7 +26,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile'),backgroundColor: AppColors.primaryAccent, elevation: 0,),
+      appBar: AppBar(
+        title: const Text('Profile'),
+        backgroundColor: AppColors.primaryAccent,
+        elevation: 0,
+      ),
       backgroundColor: AppColors.white,
       body: SafeArea(
         child: Container(
@@ -50,21 +54,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(
                           width: 30,
                         ),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Prerak',
-                              style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold,fontSize: 25),
+                              style: TextStyle(
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
                               "Mobile Number",
-                              style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold,fontSize: 20),
+                              style: TextStyle(
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
                             ),
-
                           ],
                         ),
                         const SizedBox(
@@ -75,43 +84,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: InkWell(
                               onTap: () {
                                 Navigator.push(
-                                    context,
-                                  MaterialPageRoute(builder: (context) => InformationPage()),
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => InformationPage()),
                                 );
                               },
                               child: const Icon(Icons.help)),
                         ),
                       ],
-
                     ),
                   ),
-
                   const SizedBox(
                     width: 10,
                   ),
-
                   ElevatedButton(
                     child: const Text("Edit profile"),
                     onPressed: () {
                       Navigator.push(
-                         context,
-                         MaterialPageRoute(builder: (context) => EditProfilePage()),
-                       );
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditProfilePage()),
+                      );
                     },
                   ),
                   const SizedBox(
                     height: 100,
                   ),
-
                   const SizedBox(
                     height: 10,
                   ),
-
                   const Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
                       "More Controls",
-                      style: TextStyle(color: AppColors.black,fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: AppColors.black, fontWeight: FontWeight.bold),
                     ),
                   ),
                   const SizedBox(
@@ -157,7 +164,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               child: Text(
                                 "${itemList[index]}  >",
-                                style: const TextStyle(color: AppColors.black,fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    color: AppColors.black,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           );
@@ -169,8 +178,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-
-
                 ],
               ),
             )),
