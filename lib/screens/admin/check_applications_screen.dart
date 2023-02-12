@@ -236,8 +236,10 @@ class _CheckApplicationsState extends State<CheckApplications> {
                               ),
                               onPressed: () async {
                                 if (await QueryRepo().approveProvider(
-                                    '${currApplication['name']}:${currApplication['email']}')) {
+                                    '${currApplication['name']}:${currApplication['email']}',
+                                    currApplication)) {
                                   UserStore().fetchPendingProviders();
+                                  UserStore().fetchNearestRestros("");
                                   Navigator.of(context).pop();
                                 }
                               },

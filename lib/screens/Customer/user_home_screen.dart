@@ -3,9 +3,11 @@ import 'package:eat_easy/screens/Provider/provider_view_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 import '../../Theme/app_colors.dart';
 import '../../stores/user_store.dart';
+import '../../widgets/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
 class _HomeScreenState extends State<HomeScreen> {
+  var rating = 0.0;
   String status = "Approved";
   final TextEditingController _searchtextcontroller = TextEditingController();
   var _searchKey = '';
@@ -373,38 +376,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 20,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 10, right: 10),
-                //   child: SearchBar(
-                //       height: 40,
-                //       width: double.infinity,
-                //       controller: _searchtextcontroller,
-                //       title: "Search for a location",
-                //       onChanged: () {
-                //         if (_searchKey != _searchtextcontroller.text) {
-                //           setState(() {
-                //             _searchKey = _searchtextcontroller.text;
-                //           });
-
-                //           // WidgetsBinding.instance.addPostFrameCallback((_) {});
-                //         }
-                //       },
-                //       onTap: () {
-                //         print("Hello");
-                //         print(_searchtextcontroller.text);
-                //         Navigator.push(
-                //           context,
-                //           PageTransition(
-                //             child: FromAddressScreen(),
-                //             type: PageTransitionType.fade,
-                //           ),
-                //         );
-                //       }),
-                // ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: SearchBar(
+                    height: 40,
+                    width: double.infinity,
+                    controller: _searchtextcontroller,
+                    title: "Search for a location",
+                    onChanged: () {
+                      if (_searchKey != _searchtextcontroller.text) {
+                        _searchKey = _searchtextcontroller.text;
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          UserStore().fetchPendingOrders(_searchKey);
+                          UserStore().fetchNearestRestros(_searchKey);
+                          // UserStore().fetchCompletedProviders(_searchKey);
+                        });
+                      }
+                    },
+                    // onTap: () {
+                    //   print("Hello");
+                    //   print(_searchtextcontroller.text);
+                    //   Navigator.push(
+                    //     context,
+                    //     PageTransition(
+                    //       child: FromAddressScreen(),
+                    //       type: PageTransitionType.fade,
+                    //     ),
+                    //   );
+                    // }
+                  ),
+                ),
                 const SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.8,
@@ -439,6 +444,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               builder: (_, userStore, __) {
                                 return ListView.builder(
                                   itemCount: userStore.orders.length,
+                                  physics: BouncingScrollPhysics(),
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
@@ -449,7 +455,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //     DateTime.now().difference(dt1);
                                     return Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 16, bottom: 10),
+                                            left: 16, bottom: 10, right: 5),
                                         child: Stack(
                                           children: [
                                             InkWell(
@@ -573,36 +579,158 @@ class _HomeScreenState extends State<HomeScreen> {
                                 return ListView.builder(
                                   itemCount: userStore.restros.length,
                                   shrinkWrap: true,
+                                  physics: BouncingScrollPhysics(),
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) {
                                     final currrestro = userStore.restros[index];
                                     return Padding(
-                                      padding: const EdgeInsets.only(left: 16),
+                                      padding: const EdgeInsets.only(
+                                          left: 16, bottom: 10, right: 5),
                                       child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              child: KitchenView(
-                                                  kitchendetails: currrestro),
-                                              type: PageTransitionType.fade,
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          width: 130,
-                                          height: 120,
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  Colors.grey.withOpacity(0.4),
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      currrestro["imageUrl"]),
-                                                  fit: BoxFit.fill)),
-                                        ),
-                                      ),
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                child: KitchenView(
+                                                    kitchendetails: currrestro),
+                                                type: PageTransitionType.fade,
+                                              ),
+                                            );
+                                          },
+                                          child: Stack(
+                                            children: [
+                                              Container(
+                                                width: 130,
+                                                // height: 120,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.4),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            currrestro[
+                                                                "imageUrl"]),
+                                                        fit: BoxFit.fill)),
+                                              ),
+                                              Positioned(
+                                                  bottom: 0,
+                                                  child: Container(
+                                                      width: 130,
+                                                      height: 75,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.white,
+                                                          boxShadow: [
+                                                            BoxShadow(
+                                                              color: Colors.grey
+                                                                  .withOpacity(
+                                                                      0.3),
+                                                              offset:
+                                                                  const Offset(
+                                                                      5.0, 5.0),
+                                                              blurRadius: 5,
+                                                              spreadRadius: 2.0,
+                                                            ), //BoxShadow
+                                                          ],
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                      .only(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          15),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          15))),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            // Text(
+                                                            //   currrestro[
+                                                            //       "name"],
+                                                            //   style: const TextStyle(
+                                                            //       fontWeight:
+                                                            //           FontWeight
+                                                            //               .bold,
+                                                            //       fontSize: 16),
+                                                            // ),
+                                                            Row(
+                                                              children: [
+                                                                currrestro["status"] ==
+                                                                        "veg"
+                                                                    ? Image
+                                                                        .network(
+                                                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM9yQPIlvAwNgYiGp4wMXXdKekDVDZklBd8ycURB2v&s",
+                                                                        width:
+                                                                            12,
+                                                                        height:
+                                                                            12,
+                                                                      )
+                                                                    : Image
+                                                                        .network(
+                                                                        "https://ih1.redbubble.net/image.756552536.4596/st,small,507x507-pad,600x600,f8f8f8.u2.jpg",
+                                                                        width:
+                                                                            12,
+                                                                        height:
+                                                                            12,
+                                                                      ),
+                                                                const SizedBox(
+                                                                  width: 2,
+                                                                ),
+                                                                Text(
+                                                                  currrestro[
+                                                                      "name"],
+                                                                  style: const TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      color: Colors
+                                                                          .green),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            // SizedBox(
+                                                            //   height: 5,
+                                                            // ),
+                                                            Text(
+                                                              "${currrestro["distance"].toString()} ${currrestro["unit"].toString()}",
+                                                              style:
+                                                                  const TextStyle(
+                                                                      fontSize:
+                                                                          12),
+                                                            ),
+                                                            Row(
+                                                              children: [
+                                                                Image.asset(
+                                                                  "assets/star.png",
+                                                                  width: 12,
+                                                                  height: 12,
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 2,
+                                                                ),
+                                                                const Text(
+                                                                  "4.5",
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      color: Colors
+                                                                          .green),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )))
+                                            ],
+                                          )),
                                     );
                                   },
                                 );

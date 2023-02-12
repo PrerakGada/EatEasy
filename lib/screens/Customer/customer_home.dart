@@ -17,11 +17,21 @@ import '../../Theme/app_colors.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:popup_card/popup_card.dart';
 
-class CustomerHome extends StatelessWidget {
+import '../../widgets/search_bar.dart';
+
+class CustomerHome extends StatefulWidget {
   static const String id = '/customerhome';
 
   CustomerHome({Key? key}) : super(key: key);
+
+  @override
+  State<CustomerHome> createState() => _CustomerHomeState();
+}
+
+class _CustomerHomeState extends State<CustomerHome> {
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+  var _searchtextcontroller = TextEditingController();
+  String _searchKey = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +45,29 @@ class CustomerHome extends StatelessWidget {
     return Scaffold(
       key: _scaffoldState,
       drawer: SideBar(),
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            size: 30,
+          ),
+        ),
+        title: SearchBar(
+          title: "Search for addresss",
+          height: 40,
+          width: MediaQuery.of(context).size.width * .9,
+          controller: _searchtextcontroller,
+          onChanged: () {
+            if (_searchKey != _searchtextcontroller.text) {
+              _searchKey = _searchtextcontroller.text;
+              WidgetsBinding.instance.addPostFrameCallback((_) {});
+            }
+          },
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

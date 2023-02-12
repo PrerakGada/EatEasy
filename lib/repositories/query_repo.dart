@@ -14,7 +14,7 @@ class QueryRepo {
           final docData = doc.data();
           if (docData['email'] == email) {
             UserStore().currUser = docData;
-            print("This is the Correct Doc: "+ docData.toString());
+            print("This is the Correct Doc: " + docData.toString());
             return docData;
           }
         }
@@ -39,26 +39,56 @@ class QueryRepo {
     return applications;
   }
 
-  Future fetchOrders() async {
+  Future fetchOrders(String? query) async {
     // await _firestore.collection('food').orderBy('name')
-    await _firestore.collection("food").orderBy('name').get().then((value) {
-      for (var doc in value.docs) {
-        // print("${doc.id} => ${doc.data()}");
-        final docData = doc.data();
-        orders.add(docData);
-      }
-    });
+    if (query == "") {
+      await _firestore.collection("food").orderBy('name').get().then((value) {
+        for (var doc in value.docs) {
+          // print("${doc.id} => ${doc.data()}");
+          final docData = doc.data();
+          orders.add(docData);
+        }
+      });
+    } else {
+      await _firestore
+          .collection("food")
+          .orderBy('name')
+          .where('name', isEqualTo: query)
+          .get()
+          .then((value) {
+        for (var doc in value.docs) {
+          // print("${doc.id} => ${doc.data()}");
+          final docData = doc.data();
+          orders.add(docData);
+        }
+      });
+    }
     return orders;
   }
 
-  Future fetchRestros() async {
-    await _firestore.collection("foodbanks").get().then((value) {
-      for (var doc in value.docs) {
-        // print("${doc.id} => ${doc.data()}");
-        final docData = doc.data();
-        restros.add(docData);
-      }
-    });
+  Future fetchRestros(String? query) async {
+    if (query == "") {
+      await _firestore.collection("foodbanks").get().then((value) {
+        for (var doc in value.docs) {
+          // print("${doc.id} => ${doc.data()}");
+          final docData = doc.data();
+          restros.add(docData);
+        }
+      });
+    } else {
+      await _firestore
+          .collection("foodbanks")
+          .where('name', isEqualTo: query)
+          .get()
+          .then((value) {
+        for (var doc in value.docs) {
+          // print("${doc.id} => ${doc.data()}");
+          final docData = doc.data();
+          restros.add(docData);
+        }
+      });
+    }
+
     return restros;
   }
 
@@ -131,7 +161,8 @@ class QueryRepo {
       String description,
       String imageUrl,
       String datetime,
-      String timestamp) async {
+      String timestamp,
+      String postedBy) async {
     try {
       _firestore.collection('food').doc().set({
         'name': name,
@@ -139,7 +170,8 @@ class QueryRepo {
         'imageUrl': imageUrl,
         'stock': stock,
         'date': datetime,
-        'timeStamp': timestamp
+        'timeStamp': timestamp,
+        'postedBy': postedBy
       });
       return true;
     } catch (e) {
@@ -147,9 +179,10 @@ class QueryRepo {
     }
   }
 
-  Future approveProvider(String id) async {
+  Future approveProvider(String id, var map) async {
     try {
       _firestore.collection('providers').doc(id).update({'approval': true});
+      _firestore.collection('foodbanks').doc().set(map);
       return true;
     } catch (e) {
       print(e);

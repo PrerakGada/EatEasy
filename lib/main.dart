@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         // initialRoute: ExploreMap.id,
         //initialRoute: ExploreMap.id,
         // initialRoute: ProfileScreen.id,
-        initialRoute: AdminDashBoard.id,
+        initialRoute: SplashScreen.id,
         // initialRoute: CustomerHome.id,
         routes: {
           SplashScreen.id: (context) => const SplashScreen(),

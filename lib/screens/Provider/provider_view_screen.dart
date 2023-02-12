@@ -1,6 +1,7 @@
 import 'package:eat_easy/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_loading.dart';
 import '../../widgets/image_placeHolder.dart';
 
 class KitchenView extends StatefulWidget {
@@ -50,7 +51,7 @@ class _KitchenViewState extends State<KitchenView> {
                     placeholder: SizedBox(
                       width: 20,
                       height: 20,
-                      child: CircularProgressIndicator(),
+                      child: customloading(),
                     ),
                     excludeFromSemantics: true,
                   ));
@@ -133,7 +134,7 @@ class _KitchenViewState extends State<KitchenView> {
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
                                       // overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: AppColors.black,
                                           fontWeight: FontWeight.bold)),
                                 ),

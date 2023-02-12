@@ -34,8 +34,8 @@ class _SplashScreenState extends State<SplashScreen>
       await handleNavigation();
       await UserStore().getCurrUser();
       await UserStore().fetchPendingProviders();
-      await UserStore().fetchPendingOrders();
-      await UserStore().fetchNearestRestros();
+      await UserStore().fetchPendingOrders("");
+      await UserStore().fetchNearestRestros("");
     });
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 1000));
@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
               ? isAdmin
                   ? const AdminDashBoard()
                   : isProvider
-                      ?  ProviderDashBoard()
+                      ? ProviderDashBoard()
                       : HomeScreen()
               : const OnboardingScreen(),
           transitionDuration: const Duration(milliseconds: 300),
@@ -67,9 +67,8 @@ class _SplashScreenState extends State<SplashScreen>
 
   handleNavigation() async {
     if (FirebaseAuth.instance.currentUser != null) {
-
       print('vsanvjkasnv kjasf kjfs vjkdfs vjf');
-      print( UserStore().currUser);
+      print(UserStore().currUser);
       print(await UserStore().getCurrUser());
       isLoggedIn = true;
       if (UserStore().currUser == 'admin') isAdmin = true;
@@ -100,7 +99,6 @@ class _SplashScreenState extends State<SplashScreen>
             // height: 480,
             width: MediaQuery.of(context).size.width,
           ),
-
         ),
       ),
     );

@@ -28,14 +28,13 @@ class UserStore extends StateKeeper {
     notifyListeners();
   }
 
-  Future fetchPendingOrders() async {
-    orders = await QueryRepo().fetchOrders();
-    print(orders);
+  Future fetchPendingOrders(String? query) async {
+    orders = await QueryRepo().fetchOrders(query);
     notifyListeners();
   }
 
-  Future fetchNearestRestros() async {
-    restros = await QueryRepo().fetchRestros();
+  Future fetchNearestRestros(String? query) async {
+    restros = await QueryRepo().fetchRestros(query);
     print(restros);
     notifyListeners();
   }

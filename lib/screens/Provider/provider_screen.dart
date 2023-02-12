@@ -179,8 +179,8 @@ class _ProviderDashBoardState extends State<ProviderDashBoard> {
                     ),
                     InkWell(
                       onTap: () {
-                        UserStore().fetchPendingOrders();
-                        UserStore().fetchNearestRestros();
+                        UserStore().fetchPendingOrders("");
+                        UserStore().fetchNearestRestros("");
                         Navigator.push(
                           context,
                           PageTransition(

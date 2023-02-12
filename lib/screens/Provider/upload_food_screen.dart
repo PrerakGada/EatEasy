@@ -373,7 +373,8 @@ class _UploadFoodState extends State<UploadFood> {
                                 _infoController.text,
                                 newUrl.toString(),
                                 data,
-                                date.toString())) {
+                                date.toString(),
+                                "Anand Bhavan")) {
                               // Navigator.pushNamed(context, AdminDashBoard.id);
                             }
 

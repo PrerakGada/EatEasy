@@ -92,10 +92,8 @@ class _EventsMapState extends State<EventsMap> {
                         snippet: currProvider['description'],
                       ),
                       markerId: MarkerId('$index'),
-                      position: LatLng(
-                        currProvider['lat'],
-                        currProvider['lang']
-                      ),
+                      position:
+                          LatLng(currProvider['lat'], currProvider['lang']),
                     ),
                   );
                   return Container();

@@ -56,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               'Prerak',
                               style: TextStyle(
